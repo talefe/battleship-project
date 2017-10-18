@@ -4,39 +4,58 @@ import org.academiadecodigo.battleship.grid.Grid;
 import org.academiadecodigo.battleship.ship.Ship;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.mouse.Mouse;
-import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
-import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
-import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 
 /**
  * Created by codecadet on 14/10/17.
  */
 public class Game {
 
-    private Player player = new Player();
-    Ship ship = new Ship();
-    private Grid g1 = new Grid(2, 2, 40);
+    private Grid grid = new Grid();
+    private Rectangle cell;
+    Ship ship1 = new Ship();
+    Ship ship2 = new Ship();
+    //private Ship[] ships = new Ship[2];
 
     public void init() {
 
-        g1.gridInit();
 
-        System.out.println(g1.getX());
-        System.out.println(g1.getY());
-        if (player.getX() > g1.getX() && player.getX() < (g1.getX() + g1.getCellSize())) {
+        grid.gridInit();
+    }
 
-            System.out.println(player.getX());
-            System.out.println(player.getY());
+    public Grid getGrid() {
+        return grid;
+    }
 
+    public void drawCell(int x, int y) {
+
+        if (x < 0 || y < 0) {
+            System.out.println("x out of bounds");
+            System.out.println("y out of bounds");
+            return;
+        } else if (x >= grid.getCols() || y >= grid.getRows()) {
+            System.out.println("x out of bounds");
+            System.out.println("y out of bounds");
+            return;
         }
 
-/*
-        Rectangle rect = new Rectangle(g1.getX(), g1.getY() - 23, g1.getCellSize(), g1.getCellSize());
-        rect.setColor(Color.RED);
-        rect.fill();
+        System.out.println("x:" + x);
+        System.out.println("y:" + y);
+
+        Rectangle cell = new Rectangle(grid.colToPixel(x), grid.rowToPixel(y), grid.getCellSize(), grid.getCellSize());
+
+        //for (int i = 0; i < ships.length; i++) {
+        if (x == ship1.getPosition().getCol() && y == ship1.getPosition().getRow()) {
+            System.out.println(("hit"));
+            cell.setColor(Color.RED);
+        } else {
+            cell.setColor(Color.BLUE);
         }
-        */
+
+        cell.fill();
+    }
+
+    public Rectangle getCell() {
+        return cell;
     }
 }
 

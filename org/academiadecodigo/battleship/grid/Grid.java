@@ -7,27 +7,25 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
  */
 public class Grid {
 
-    private int PADDING = 10;
-    private int STUPIDFUCKINGMOUSESHIT = 23;
+    public static int PADDING = 10;
+    public static int MOUSESHIT = 23;
+    public static int CELLSIZE = 40;
     private int cols;
     private int rows;
-    private int cellSize;
     private Rectangle grid;
 
-    public Grid(int cols, int rows, int cellSize) {
-        this.cols = cols;
-        this.rows = rows;
-        this.cellSize = cellSize;
+    public Grid() {
+        this.cols = 10;
+        this.rows = 10;
     }
 
     public void gridInit() {
-
-        grid = new Rectangle(PADDING, PADDING, cellSize * cols, cellSize * rows);
+        grid = new Rectangle(PADDING, PADDING, (CELLSIZE * cols), (CELLSIZE * rows));
         grid.draw();
     }
 
     public int getCellSize() {
-        return cellSize;
+        return CELLSIZE;
     }
 
     public int getCols() {
@@ -46,4 +44,27 @@ public class Grid {
         return grid.getY();
     }
 
+    public int getWidth() {
+        return grid.getWidth();
+    }
+
+    public int getHeight() {
+        return grid.getHeight();
+    }
+
+    public int pixelToCol(int pixel){
+        return (int) (Math.floor(pixel / CELLSIZE));
+    }
+
+    public int pixelToRow(int pixel){
+        return (int) (Math.floor(pixel / CELLSIZE));
+    }
+
+    public static int colToPixel(int col) {
+        return col * CELLSIZE + PADDING;
+    }
+
+    public static int rowToPixel(int row) {
+        return row * CELLSIZE + PADDING;
+    }
 }

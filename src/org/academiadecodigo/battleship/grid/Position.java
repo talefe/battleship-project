@@ -1,7 +1,5 @@
 package org.academiadecodigo.battleship.grid;
 
-import org.academiadecodigo.battleship.grid.Grid;
-
 public class Position {
 
     private Grid grid = new Grid();
@@ -14,6 +12,11 @@ public class Position {
         System.out.println("Ship col: " + col);
         row = (int) (Math.random() * grid.getRows());
         System.out.println("Ship row: " + row);
+    }
+
+    public Position(int col, int row) {
+        this.col = col;
+        this.row = row;
     }
 
     public int getCol() {

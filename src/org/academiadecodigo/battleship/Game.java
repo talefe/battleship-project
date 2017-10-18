@@ -14,11 +14,12 @@ public class Game {
     private Rectangle cell;
     Ship ship1 = new Ship();
     Ship ship2 = new Ship();
+    private Ship[] ships = new Ship[2];
     //private Ship[] ships = new Ship[2];
 
     public void init() {
 
-
+        ships[0] = ship1;
         grid.gridInit();
     }
 
@@ -43,15 +44,25 @@ public class Game {
 
         Rectangle cell = new Rectangle(grid.colToPixel(x), grid.rowToPixel(y), grid.getCellSize(), grid.getCellSize());
 
-        //for (int i = 0; i < ships.length; i++) {
-        if (x == ship1.getPosition().getCol() && y == ship1.getPosition().getRow()) {
-            System.out.println(("hit"));
-            cell.setColor(Color.RED);
-        } else {
-            cell.setColor(Color.BLUE);
+        for (int i = 0; i < ships.length; i++) {
+
+            if (x == ships[i].getFirstPosition().getCol() && y == ships[i].getFirstPosition().getRow()) {
+                cell.setColor(Color.RED);
+                System.out.println(("hit--"));
+                cell.fill();
+                break;
+
+
+            } else {
+
+                System.out.println("miss");
+                cell.setColor(Color.BLUE);
+                cell.fill();
+
+            }
         }
 
-        cell.fill();
+
     }
 
     public Rectangle getCell() {

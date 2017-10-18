@@ -1,8 +1,5 @@
 package org.academiadecodigo.battleship;
 
-import org.academiadecodigo.battleship.grid.Grid;
-import org.academiadecodigo.battleship.ship.Ship;
-
 public class Main {
 
 

@@ -1,17 +1,17 @@
 package org.academiadecodigo.battleship.grid;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
 public class Position {
 
-    private Grid grid = new Grid();
     private int col;
     private int row;
     private boolean hit;
 
     public Position() {
-        col = (int) (Math.random() * grid.getCols());
-        System.out.println("Ship col: " + col);
-        row = (int) (Math.random() * grid.getRows());
-        System.out.println("Ship row: " + row);
+        col = (int) (Math.random() * Grid.cols);
+        row = (int) (Math.random() * Grid.cols);
     }
 
     public Position(int col, int row) {
@@ -27,7 +27,13 @@ public class Position {
         return row;
     }
 
-    public boolean isHit() {
-        return hit = true;
+    public boolean areCoordinatesEqual(int x, int y) {
+        return this.col == x && this.row == y;
+    }
+
+    public void hit() {
+        Rectangle cell = new Rectangle(Grid.colToPixel(col), Grid.rowToPixel(row), Grid.CELLSIZE, Grid.CELLSIZE);
+        cell.setColor(Color.WHITE);
+        cell.fill();
     }
 }

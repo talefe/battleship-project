@@ -31,6 +31,10 @@ public class MouseController implements MouseHandler {
         game.drawCell(x, y);
     }
 
+    //added method hitShip
+    public void hitShip() {
+    }
+
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 

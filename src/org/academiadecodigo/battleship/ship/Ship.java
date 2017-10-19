@@ -14,15 +14,12 @@ public class Ship {
 
 
     public Ship(ShipType shipType) {
-
         this.shipType = shipType;
         destroyed = false;
-
     }
 
     public void setPositions(Position[] positions) {
         this.positions = positions;
-
     }
 
     public void fillShip() {
@@ -35,7 +32,6 @@ public class Ship {
         }
     }
 
-
     public Position[] getPositions() {
         return positions;
     }
@@ -47,20 +43,22 @@ public class Ship {
     public boolean isHit(int x, int y) {
 
         for (Position pos : positions) {
+
             if (pos.areCoordinatesEqual(x, y)) {
                 return true;
             }
         }
+
         return false;
     }
 
     public void hit(int x, int y) {
+
         for (Position pos : positions) {
+
             if (pos.areCoordinatesEqual(x, y)) {
                 pos.hit();
             }
         }
     }
-
-
 }

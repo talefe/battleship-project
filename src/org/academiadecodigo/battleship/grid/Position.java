@@ -10,8 +10,8 @@ public class Position {
     private boolean hit;
 
     public Position() {
-        col = (int) (Math.random() * Grid.cols);
-        row = (int) (Math.random() * Grid.cols);
+        col = (int) (Math.random() * Grid.COLS);
+        row = (int) (Math.random() * Grid.COLS);
     }
 
     public Position(int col, int row) {

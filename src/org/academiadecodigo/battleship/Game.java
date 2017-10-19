@@ -1,10 +1,8 @@
 package org.academiadecodigo.battleship;
 
 import org.academiadecodigo.battleship.grid.Grid;
-import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.ship.Ship;
 import org.academiadecodigo.battleship.ship.ShipFactory;
-import org.academiadecodigo.battleship.ship.ShipType;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -20,11 +18,25 @@ public class Game {
     private Line lineB;
     private ShipFactory shipFactory = new ShipFactory();
     private Ship[] ships;
+    private boolean gameStart = false;
+    private Rectangle initialScreen;
 
     public void init() {
 
+        MouseController mc = new MouseController(this);
+
+        Rectangle initialScreen = new Rectangle(10, 10, 800, 800);
+        initialScreen.fill();
+    }
+
+    public void start() {
+
+        gameStart = true;
+
         grid.gridInit();
+
         ships = shipFactory.createNavy();
+
         for (Ship ship : ships) {
             ship.fillShip();
             System.out.println(ship.getPositions()[0].getCol() + "," + ship.getPositions()[0].getRow());
@@ -35,22 +47,13 @@ public class Game {
         return grid;
     }
 
-    public void drawCell(int x, int y) {
+    public void hitGuess(int x, int y) {
 
-        // variable to check if mouse position is out of bounds. that way we can call the variable later
-        boolean outOfBounds = x < 0 || y < 0 || x >= grid.getCols() || y >= grid.getRows();
+        boolean outOfBounds = x < 0 || y < 0 || x >= Grid.COLS || y >= Grid.ROWS;
 
         if (outOfBounds) {
-            System.out.println("position out of bounds!");
             return;
         }
-
-        Line lineA = new Line(grid.colToPixel(x), grid.rowToPixel(y), grid.colToPixel(x) + grid.getCellSize(), grid.rowToPixel(y) + grid.getCellSize());
-        lineA.setColor(Color.GREEN);
-        Line lineB = new Line(grid.colToPixel(x), grid.rowToPixel(y) + grid.getCellSize(), grid.colToPixel(x) + grid.getCellSize(), grid.rowToPixel(y));
-        lineB.setColor(Color.GREEN);
-
-        System.out.println("x: " + x + " || y: " + y);
 
         for (Ship ship : ships) {
 
@@ -60,13 +63,12 @@ public class Game {
             }
         }
 
-        lineA.draw();
-        lineB.draw();
+        grid.drawCross(x, y);
 
     }
 
-    public Rectangle getCell() {
-        return cell;
+    public boolean started() {
+        return gameStart;
     }
 }
 

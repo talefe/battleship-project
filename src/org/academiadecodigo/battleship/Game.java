@@ -24,7 +24,7 @@ public class Game {
     private Ship[] ships;
     private boolean gameStart = false;
     private Rectangle initialScreen;
-    private int liveships = 10;
+    private int liveships = 7;
     private boolean gameFinished = false;
     private Text howManyShipsText;
     private Text gameInformation;
@@ -40,7 +40,7 @@ public class Game {
 
         Rectangle initialScreen = new Rectangle(10, 10, 800 + Grid.PADDING, 800);
         initialScreen.fill();
-        Picture startImage = new Picture(10,10,"org/academiadecodigo/battleship/battleship.jpg");
+        Picture startImage = new Picture(10,10, "battleship.jpg");
         startImage.draw();
 
     }

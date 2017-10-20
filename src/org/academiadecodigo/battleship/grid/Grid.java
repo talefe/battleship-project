@@ -22,8 +22,8 @@ public class Grid {
 
     private int battleshipLeft = 1;
     private int cruiserLeft = 2;
-    private int submarineLeft = 3;
-    private int carrierLeft = 4;
+    private int submarineLeft = 2;
+    private int carrierLeft = 2;
 
     private Text battleship;
     private Text battleshipNumber;

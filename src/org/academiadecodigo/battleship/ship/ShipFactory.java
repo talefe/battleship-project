@@ -8,7 +8,9 @@ public class ShipFactory {
 
     private int size;
     private Ship[] navy;
-    public Position[] validPositions = new Position[30];
+    private boolean worked = false;
+    public Position[] occupiedPositions = new Position[20];
+    private Direction direction;
 
 
     public Ship[] createNavy() {
@@ -19,9 +21,6 @@ public class ShipFactory {
                 new Ship(ShipType.CRUISER),
                 new Ship(ShipType.SUBMARINE),
                 new Ship(ShipType.SUBMARINE),
-                new Ship(ShipType.SUBMARINE),
-                new Ship(ShipType.CARRIER),
-                new Ship(ShipType.CARRIER),
                 new Ship(ShipType.CARRIER),
                 new Ship(ShipType.CARRIER)
 
@@ -30,108 +29,109 @@ public class ShipFactory {
         for (Ship ship : navy) {
             size = ship.getShipType().getNumPositions();
 
-            ship.setPositions(generatePosShip(size));
+            ship.setPositions(generateShipPositions(size));
         }
 
         return navy;
     }
 
-    public Position[] generatePosShip(int size) {
+    public Position[] generateShipPositions(int size) {
 
+        worked = false;
         Position[] positions = new Position[size];
-        boolean worked = false;
 
         while (!worked) {
 
             worked = true;
             positions[0] = new Position();
+            direction = Direction.direction();
 
-            switch (Direction.direction()) {
+            int x = positions[0].getCol();
+            int y = positions[0].getRow();
 
-                case LEFT:
+            for (int i = 1; i < positions.length; i++) {
+                x += direction.getX();
+                y += direction.getY();
 
-                    for (int i = 1; i < positions.length; i++) {
+                if (x < 0 || y < 0 || x > Grid.COLS - 1 || y > Grid.ROWS - 1)
+                    worked = false;
 
-                        positions[i] = new Position((positions[i - 1].getCol() - 1), (positions[i - 1].getRow()));
-                        if (positions[i].getCol() < 0)
-                            worked = false;
-                    }
-                    break;
+                positions[i] = new Position(x, y);
 
-                case RIGHT:
+                if (lookAroundYou(positions[i])){
+                    return generateShipPositions(size);
+                }
 
-                    for (int i = 1; i < positions.length; i++) {
-
-                        positions[i] = new Position((positions[i - 1].getCol() + 1), (positions[i - 1].getRow()));
-                        if (positions[i].getCol() > Grid.COLS - 1)
-                            worked = false;
-                    }
-                    break;
-
-                case UP:
-
-                    for (int i = 1; i < positions.length; i++) {
-
-                        positions[i] = new Position((positions[i - 1].getCol()), (positions[i - 1].getRow() - 1));
-                        if (positions[i].getRow() < 0)
-                            worked = false;
-                    }
-                    break;
-
-                case DOWN:
-
-                    for (int i = 1; i < positions.length; i++) {
-
-                        positions[i] = new Position((positions[i - 1].getCol()), (positions[i - 1].getRow() + 1));
-                        if (positions[i].getRow() > Grid.ROWS - 1)
-                            worked = false;
-                    }
-                    break;
             }
         }
 
-        return checkValid(positions);
+        return checkIfOccupied(positions);
     }
 
-    private Position[] checkValid(Position[] positions) {
 
-        Position[] temporaryValidPositions = new Position[positions.length];
+    public boolean lookAroundYou(Position pos) {
+
+        boolean aroundYou = false;
+
+        for (int i = 0; i < Direction.values().length; i++) {
+
+            int x = pos.getCol() + Direction.values()[i].getX();
+            int y = pos.getRow() + Direction.values()[i].getY();
+
+            for (int j = 0; j < occupiedPositions.length; j++) {
+
+                if (occupiedPositions[j] != null) {
+
+                    if (x == occupiedPositions[j].getCol() && y == occupiedPositions[j].getRow()) {
+
+                        aroundYou = true;
+
+                    }
+                }
+            }
+        }
+        return aroundYou;
+    }
+
+    private Position[] checkIfOccupied(Position[] positions) {
+
+        Position[] temporaryPositions = new Position[positions.length];
 
         for (int i = 0; i < positions.length; i++) {
 
-            //checking if new ship positions are already inside of validPositions array
-            for (int j = 0; j < validPositions.length; j++) {
+            //checking if new ship positions are already inside of occupiedPositions array
+            for (int j = 0; j < occupiedPositions.length; j++) {
 
-                if (validPositions[0] != null) {
+                if (occupiedPositions[0] != null) {
 
-                    if(validPositions[j] != null) {
-                        if (positions[i].getCol() == validPositions[j].getCol() && positions[i].getRow() == validPositions[j].getRow()) {
+                    if (occupiedPositions[j] != null) {
+                        if (positions[i].getCol() == occupiedPositions[j].getCol() && positions[i].getRow() == occupiedPositions[j].getRow()) {
                             System.out.println("igual" + " col : " + positions[i].getCol() + " row : " + positions[i].getRow());
 
-                            return generatePosShip(positions.length);
+                            return generateShipPositions(positions.length);
                         }
                     }
 
                 }
             }
 
-            temporaryValidPositions[i] = positions[i];
+            temporaryPositions[i] = positions[i];
 
         }
 
-        //place validated position inside validPositions array
+        //place validated position inside occupiedPositions array
 
         int counter = 0;
 
-        for (int i = 0; i < validPositions.length; i++) {
+        for (int i = 0; i < occupiedPositions.length; i++) {
 
-            if (validPositions[i] == null) {
+            if (occupiedPositions[i] == null) {
 
-                validPositions[i] = temporaryValidPositions[counter];
+                occupiedPositions[i] = temporaryPositions[counter];
 
                 counter++;
 
-                if (counter > temporaryValidPositions.length - 1) {///avoids getting out of temporary array index bound
+                if (counter > temporaryPositions.length - 1) {///avoids getting out of temporary array index bound
                     break;
                 }
             }

@@ -5,9 +5,10 @@ import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.ship.Ship;
 import org.academiadecodigo.battleship.ship.ShipFactory;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
+
+import javax.sound.midi.Soundbank;
 
 /**
  * Created by codecadet on 14/10/17.
@@ -26,15 +27,17 @@ public class Game {
     private boolean gameFinished = false;
     private Text howManyShipsText;
     private Text gameInformation;
-    private Position[] hitPositions = new Position[20];
+    private Position[] hitPositions = new Position[30];
     static int index = 0;
+    private Soundbank hitSound;
+
 
 
     public void init() {
 
         MouseController mc = new MouseController(this);
 
-        Rectangle initialScreen = new Rectangle(10, 10, 800, 800);
+        Rectangle initialScreen = new Rectangle(10, 10, 800 + Grid.PADDING, 800);
         initialScreen.fill();
         Text starText = new Text(410,410, "//Click to start");
         starText.setColor(Color.GREEN);
@@ -93,10 +96,28 @@ public class Game {
 
 
                 ship.hit(x, y);
+
                 gameInformation.setText(ship.getShipType() +" HIT");
                 if(ship.isDestroyed()){
+
+                    switch (ship.getShipType()){
+
+                        case BATTLESHIP:
+                            grid.setBattleshipLeft();
+                            break;
+                        case CRUISER:
+                            grid.setCruiserLeft();
+                            break;
+                        case SUBMARINE:
+                            grid.setSubmarineLeft();
+                            break;
+                        case CARRIER:
+                            grid.setCarrierLeft();
+                            break;
+                    }
+
                     liveships --;
-                    gameInformation.setText(ship.getShipType() + " DESTRYED");
+                    gameInformation.setText(ship.getShipType() + " DESTROYED");
                     howManyShipsText.setText("Ships remaining: " + liveships);
                 }
                 if(isGameFinished()){
@@ -124,7 +145,7 @@ public class Game {
     }
 
     public void finalScreen(){
-        Rectangle initialScreen = new Rectangle(10, 10, 800, 800);
+        Rectangle initialScreen = new Rectangle(10, 10, 800 + Grid.PADDING, 800);
         initialScreen.fill();
         Text finalText = new Text(410,410, "//The End");
         finalText.setColor(Color.GREEN);

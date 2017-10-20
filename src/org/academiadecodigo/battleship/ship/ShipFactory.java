@@ -8,7 +8,7 @@ public class ShipFactory {
 
     private int size;
     private Ship[] navy;
-    public Position[] validPositions = new Position[20];
+    public Position[] validPositions = new Position[30];
 
 
     public Ship[] createNavy() {

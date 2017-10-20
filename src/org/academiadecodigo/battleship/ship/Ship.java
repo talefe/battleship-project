@@ -10,12 +10,14 @@ public class Ship {
 
     private ShipType shipType;
     private Position[] positions;
-    private boolean destroyed;
+    private int life;
+    private boolean destroyed = false;
 
 
     public Ship(ShipType shipType) {
         this.shipType = shipType;
         destroyed = false;
+        life = shipType.getNumPositions();
     }
 
     public void setPositions(Position[] positions) {
@@ -57,8 +59,19 @@ public class Ship {
         for (Position pos : positions) {
 
             if (pos.areCoordinatesEqual(x, y)) {
+                life--;
+                System.out.println(this.shipType + " HIT");
                 pos.hit();
+                if(life == 0){
+                    System.out.println(this.shipType + " DESTROYED");
+                    destroyed = true;
+
+                }
             }
         }
+    }
+
+    public boolean isDestroyed(){
+        return destroyed;
     }
 }

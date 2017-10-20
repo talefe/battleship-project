@@ -14,12 +14,13 @@ public class Game {
 
     private Grid grid = new Grid();
     private Rectangle cell;
-    private Line lineA;
-    private Line lineB;
+
+
     private ShipFactory shipFactory = new ShipFactory();
     private Ship[] ships;
     private boolean gameStart = false;
     private Rectangle initialScreen;
+
 
     public void init() {
 
@@ -41,6 +42,10 @@ public class Game {
             ship.fillShip();
             System.out.println(ship.getPositions()[0].getCol() + "," + ship.getPositions()[0].getRow());
         }
+
+
+
+
     }
 
     public Grid getGrid() {
@@ -58,11 +63,13 @@ public class Game {
         for (Ship ship : ships) {
 
             if (ship.isHit(x, y)) {
+
                 ship.hit(x, y);
+
                 return;
             }
         }
-
+        System.out.println("MISS");
         grid.drawCross(x, y);
 
     }
@@ -70,6 +77,8 @@ public class Game {
     public boolean started() {
         return gameStart;
     }
+
+
 }
 
 

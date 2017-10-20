@@ -6,9 +6,9 @@ import org.academiadecodigo.battleship.grid.Position;
 
 public class ShipFactory {
 
-    private ShipType shiptype;
+    private int size;
     private Ship[] navy;
-    private Position[] validPositions = new Position[20];
+    public Position[] validPositions = new Position[20];
 
 
     public Ship[] createNavy() {
@@ -28,15 +28,17 @@ public class ShipFactory {
         };
 
         for (Ship ship : navy) {
-            ship.setPositions(generatePosShip(ship.getShipType()));
+            size = ship.getShipType().getNumPositions();
+
+            ship.setPositions(generatePosShip(size));
         }
 
         return navy;
     }
 
-    public Position[] generatePosShip(ShipType shipType) {
+    public Position[] generatePosShip(int size) {
 
-        Position[] positions = new Position[shipType.getNumPositions()];
+        Position[] positions = new Position[size];
         boolean worked = false;
 
         while (!worked) {
@@ -88,9 +90,7 @@ public class ShipFactory {
             }
         }
 
-        checkValid(positions);
-
-        return positions;
+        return checkValid(positions);
     }
 
     private Position[] checkValid(Position[] positions) {
@@ -106,8 +106,9 @@ public class ShipFactory {
 
                     if(validPositions[j] != null) {
                         if (positions[i].getCol() == validPositions[j].getCol() && positions[i].getRow() == validPositions[j].getRow()) {
-                            System.out.println("igual");
-                            return generatePosShip(this.shiptype);
+                            System.out.println("igual" + " col : " + positions[i].getCol() + " row : " + positions[i].getRow());
+
+                            return generatePosShip(positions.length);
                         }
                     }
 
@@ -117,7 +118,6 @@ public class ShipFactory {
             temporaryValidPositions[i] = positions[i];
 
         }
-
 
         //place validated position inside validPositions array
 
@@ -135,10 +135,7 @@ public class ShipFactory {
                     break;
                 }
             }
-
-            //System.out.println("Temporary row and column " + temporaryValidPositions[i].getRow() + " - " + temporaryValidPositions[i].getCol());
         }
         return positions;
     }
-
 }

@@ -99,7 +99,7 @@ public class Grid {
     }
 
     public int getHeight() {
-        return CELLSIZE * COLS;
+        return CELLSIZE * ROWS;
     }
 
     public int pixelToCol(int pixel) {

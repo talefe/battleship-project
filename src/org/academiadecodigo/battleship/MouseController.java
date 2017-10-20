@@ -36,8 +36,18 @@ public class MouseController implements MouseHandler {
         } else if (e.getY() < Grid.PADDING + 23) {
             y = -1;
         }
+        for (int i = 0; i <Game.index ; i++) {
 
-        game.hitGuess(x, y);
+            if(x ==game.getHitPositions()[i].getCol() && y == game.getHitPositions()[i].getRow()){
+                return;
+            }
+
+        }
+
+
+        if(!game.isGameFinished()) {
+            game.hitGuess(x, y);
+        }
     }
 
     //added method hitShip

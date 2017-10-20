@@ -7,7 +7,8 @@ public class Position {
 
     private int col;
     private int row;
-    private boolean hit;
+
+
 
     public Position() {
         col = (int) (Math.random() * Grid.COLS);
@@ -28,12 +29,29 @@ public class Position {
     }
 
     public boolean areCoordinatesEqual(int x, int y) {
-        return this.col == x && this.row == y;
+
+            return this.col == x && this.row == y;
+
     }
 
-    public void hit() {
-        Rectangle cell = new Rectangle(Grid.colToPixel(col), Grid.rowToPixel(row), Grid.CELLSIZE, Grid.CELLSIZE);
-        cell.setColor(Color.WHITE);
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    /* public void hit() {
+
+
+        Rectangle cell = new Rectangle(Grid.colToPixel(col) +1, Grid.rowToPixel(row) +1, Grid.CELLSIZE -1, Grid.CELLSIZE-1);
+        cell.setColor(Color.RED);
         cell.fill();
     }
+
+    */
+
+
 }
+

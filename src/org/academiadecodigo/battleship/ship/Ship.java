@@ -47,6 +47,7 @@ public class Ship {
         for (Position pos : positions) {
 
             if (pos.areCoordinatesEqual(x, y)) {
+
                 return true;
             }
         }
@@ -61,7 +62,10 @@ public class Ship {
             if (pos.areCoordinatesEqual(x, y)) {
                 life--;
                 System.out.println(this.shipType + " HIT");
-                pos.hit();
+                Rectangle cell = new Rectangle(Grid.colToPixel(x) +1, Grid.rowToPixel(y) +1, Grid.CELLSIZE -1, Grid.CELLSIZE-1);
+                cell.setColor(this.shipType.getColor());
+                cell.fill();
+
                 if(life == 0){
                     System.out.println(this.shipType + " DESTROYED");
                     destroyed = true;
@@ -74,4 +78,6 @@ public class Ship {
     public boolean isDestroyed(){
         return destroyed;
     }
+
+
 }

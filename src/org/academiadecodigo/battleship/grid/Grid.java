@@ -26,9 +26,13 @@ public class Grid {
     private int carrierLeft = 4;
 
     private Text battleship;
+    private Text battleshipNumber;
     private Text cruiser;
+    private Text cruiserNumber;
     private Text submarine;
+    private Text submarineNumber;
     private Text carrier;
+    private Text carrierNumber;
 
     public void gridInit() {
 
@@ -111,22 +115,34 @@ public class Grid {
 
     public void gameLabels(){
         Rectangle square;
+
         //battleship
-        battleship = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE /2), "Battleship " + battleshipLeft);
+        battleship = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE /2), "Battleship");
         battleship.setColor(Color.GREEN);
         battleship.draw();
+        //amount of ships left placed to the right of the squares
+        battleshipNumber = new Text(PADDING + getWidth() + CELLSIZE + CELLSIZE * 6, PADDING + CELLSIZE, "" + battleshipLeft);
+        battleshipNumber.setColor(Color.GREEN);
+        battleshipNumber.draw();
+
+
         for (int i = 0; i <5 ; i++) {
 
-           square = new Rectangle(PADDING + getWidth()+CELLSIZE + (CELLSIZE*i), PADDING + CELLSIZE, CELLSIZE, CELLSIZE);
+           square = new Rectangle(PADDING + getWidth() + CELLSIZE + (CELLSIZE*i), PADDING + CELLSIZE, CELLSIZE, CELLSIZE);
            square.setColor(Color.GREEN);
            square.draw();
 
         }
 
         //cruiser
-        cruiser = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE*2) + (CELLSIZE /2), "Cruiser " + cruiserLeft);
+        cruiser = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE*2) + (CELLSIZE /2), "Cruiser");
         cruiser.setColor(Color.GREEN);
         cruiser.draw();
+        //amount of ships left placed to the right of the squares
+        cruiserNumber = new Text(PADDING + getWidth() + CELLSIZE + CELLSIZE * 5, PADDING + CELLSIZE*3,"" + cruiserLeft);
+        cruiserNumber.setColor(Color.GREEN);
+        cruiserNumber.draw();
+
         for (int i = 0; i <4 ; i++) {
 
             square = new Rectangle(PADDING + getWidth()+CELLSIZE + (CELLSIZE*i), PADDING + CELLSIZE*3, CELLSIZE, CELLSIZE);
@@ -136,9 +152,14 @@ public class Grid {
         }
 
         //submarine
-        submarine = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE*4) + (CELLSIZE /2), "Submarine " + submarineLeft);
+        submarine = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE*4) + (CELLSIZE /2), "Submarine");
         submarine.setColor(Color.GREEN);
         submarine.draw();
+        //amount of ships left placed to the right of the squares
+        submarineNumber = new Text(PADDING + getWidth() + CELLSIZE + CELLSIZE * 4, PADDING + CELLSIZE*5, "" + submarineLeft);
+        submarineNumber.setColor(Color.GREEN);
+        submarineNumber.draw();
+
         for (int i = 0; i <3 ; i++) {
 
             square = new Rectangle(PADDING + getWidth()+CELLSIZE + (CELLSIZE*i), PADDING + CELLSIZE*5, CELLSIZE, CELLSIZE);
@@ -149,9 +170,14 @@ public class Grid {
 
         //carrier
 
-        carrier = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE*6) + (CELLSIZE /2), "Carrier " + carrierLeft);
+        carrier = new Text(PADDING + getWidth() +CELLSIZE , PADDING + (CELLSIZE*6) + (CELLSIZE /2), "Carrier");
         carrier.setColor(Color.GREEN);
         carrier.draw();
+        //amount of ships left placed to the right of the squares
+        carrierNumber = new Text(PADDING + getWidth() + CELLSIZE * 4, PADDING + CELLSIZE*7, "" + carrierLeft);
+        carrierNumber.setColor(Color.GREEN);
+        carrierNumber.draw();
+
         for (int i = 0; i <2 ; i++) {
 
             square = new Rectangle(PADDING + getWidth() + CELLSIZE + (CELLSIZE * i), PADDING + CELLSIZE * 7, CELLSIZE, CELLSIZE);
@@ -188,22 +214,22 @@ public class Grid {
 
     public void setBattleshipLeft(){
         battleshipLeft--;
-        battleship.setText("Battleship " + battleshipLeft);
+        battleshipNumber.setText("" + battleshipLeft);
     }
 
     public void setCruiserLeft(){
         cruiserLeft--;
-        cruiser.setText("Cruiser " + cruiserLeft);
+        cruiserNumber.setText("" + cruiserLeft);
     }
 
     public void setSubmarineLeft(){
         submarineLeft--;
-        submarine.setText("Submarine " + submarineLeft);
+        submarineNumber.setText("" + submarineLeft);
     }
 
     public void setCarrierLeft(){
         carrierLeft--;
-        carrier.setText("Carrier " + carrierLeft);
+        carrierNumber.setText("" + carrierLeft);
     }
 
 }

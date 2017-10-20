@@ -7,6 +7,7 @@ import org.academiadecodigo.battleship.ship.ShipFactory;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import javax.sound.midi.Soundbank;
 
@@ -39,9 +40,9 @@ public class Game {
 
         Rectangle initialScreen = new Rectangle(10, 10, 800 + Grid.PADDING, 800);
         initialScreen.fill();
-        Text starText = new Text(410,410, "//Click to start");
-        starText.setColor(Color.GREEN);
-        starText.draw();
+        Picture startImage = new Picture(10,10,"org/academiadecodigo/battleship/battleship.jpg");
+        startImage.draw();
+
     }
 
     public void start() {

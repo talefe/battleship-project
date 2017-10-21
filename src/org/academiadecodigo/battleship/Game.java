@@ -2,89 +2,53 @@ package org.academiadecodigo.battleship;
 
 import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.grid.Grid;
-import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.ship.Ship;
 import org.academiadecodigo.battleship.ship.ShipFactory;
-import org.academiadecodigo.battleship.sound.Sound;
 import org.academiadecodigo.battleship.sound.SoundManager;
 import org.academiadecodigo.battleship.sound.SoundType;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Text;
-
-import javax.sound.midi.Soundbank;
 
 /**
  * Created by codecadet on 14/10/17.
  */
 public class Game {
 
+    private GameStats gameStats = new GameStats();
     private Grid grid = new Grid();
-    private Graphics graphics = new Graphics();
-    private Rectangle cell;
     private SoundManager soundManager = new SoundManager();
-
     private ShipFactory shipFactory = new ShipFactory();
+    private Graphics graphics = new Graphics();
+
     private Ship[] ships;
-    private boolean gameStart = false;
-    private Rectangle initialScreen;
-    private int liveships = 7;
-    private boolean gameFinished = false;
-    private Text howManyShipsText;
-    private Text gameInformation;
-    private Position[] hitPositions = new Position[30];
-    static int index = 0;
-    private Soundbank hitSound;
-
-
-
 
     public void init() {
 
-        MouseController mc = new MouseController(this);
+        MouseController mc = new MouseController(this, gameStats);
 
         graphics.startScreen();
         soundManager.play(SoundType.START);
-
-    }
-
-    public void endGame(){
-
-        graphics.endScreen();
-
     }
 
     public void start() {
 
-        gameStart = true;
+        gameStats.setGameStart(true);
+
         soundManager.stop(SoundType.START);
+
         grid.gridInit();
 
         ships = shipFactory.createNavy();
 
-        for (Ship ship : ships) {
-            //ship.fillShip();
-            System.out.println(ship.getPositions()[0].getCol() + "," + ship.getPositions()[0].getRow());
-        }
+        graphics.shipsLeft();
 
-        howManyShipsText = new Text(200,620, "Ships remaining: " + liveships);
-        howManyShipsText.setColor(Color.GREEN);
-        howManyShipsText.draw();
-
-        gameInformation = new Text(200,640," ");
-        gameInformation.setColor(Color.GREEN);
-        gameInformation.draw();
-
-
-
+        graphics.gameInfo();
     }
 
-    public Grid getGrid() {
-        return grid;
+    public void endGame() {
+        graphics.endScreen();
+        soundManager.play(SoundType.END);
     }
 
     public void hitGuess(int x, int y) {
-
 
         boolean outOfBounds = x < 0 || y < 0 || x >= Grid.COLS || y >= Grid.ROWS;
 
@@ -95,71 +59,26 @@ public class Game {
         for (Ship ship : ships) {
 
             if (ship.isHit(x, y)) {
-
-                Position pos = new Position();
-                pos.setCol(x);
-                pos.setRow(y);
-                hitPositions[index] = pos;
-                index++;
-
                 ship.hit(x, y);
-                soundManager.play(SoundType.HIT);
-
-                gameInformation.setText(ship.getShipType() +" HIT");
-                if(ship.isDestroyed()){
-                    // how many ships are left
-                    switch (ship.getShipType()){
-
-                        case BATTLESHIP:
-                            grid.setBattleshipLeft();
-                            break;
-                        case CRUISER:
-                            grid.setCruiserLeft();
-                            break;
-                        case SUBMARINE:
-                            grid.setSubmarineLeft();
-                            break;
-                        case CARRIER:
-                            grid.setCarrierLeft();
-                            break;
-                    }
-
-                    liveships --;
-                    gameInformation.setText(ship.getShipType() + " DESTROYED");
-                    howManyShipsText.setText("Ships remaining: " + liveships);
-                }
-                if(isGameFinished()){
-                  endGame();
-                }
-                return;
             }
-        }
-        gameInformation.setText("MISS");
-        graphics.missSymbol(x,y);
-        soundManager.play(SoundType.MISS);
 
+            if (gameStats.isGameFinished()) {
+                endGame();
+            }
+
+            return;
+        }
+
+        graphics.drawMiss(x, y);
     }
 
     public boolean started() {
-        return gameStart;
+        return gameStats.isGameStart();
     }
 
-    public boolean isGameFinished(){
-       if(liveships == 0) {
-           gameFinished = true;
-           soundManager.play(SoundType.END);
-           return gameFinished;
-       }
-       return false;
+    public Grid getGrid() {
+        return grid;
     }
-
-
-
-
-    public Position[] getHitPositions(){
-        return hitPositions;
-    }
-
 }
 
 

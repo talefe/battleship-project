@@ -4,7 +4,7 @@ public enum SoundType {
     START("theme.wav"),
     HIT("hit2.wav"),
     MISS("miss2.wav"),
-    EXPLOSION("explosion.mp3"),
+    DESTROYED("explosion.mp3"),
     END("end.wav");
 
     private String path;
@@ -17,4 +17,6 @@ public enum SoundType {
         return path;
     }
 
+
+    // clean path names of sound files
 }

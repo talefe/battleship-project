@@ -4,26 +4,26 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public enum ShipType {
 
-    BATTLESHIP(5, Color.RED),
-    CRUISER(4,Color.RED),
-    SUBMARINE(3, Color.RED),
-    CARRIER(2, Color.RED);
+    BATTLESHIP("Battleship", 1, 5),
+    CRUISER("Cruiser", 2, 4),
+    SUBMARINE("Submarine", 2, 3),
+    CARRIER("Carrier", 2, 2);
 
+    private String name;
+    private int numShips;
     private int numPositions;
-    private Color color;
 
-
-    ShipType(int numPositions, Color color) {
+    ShipType(String name, int numShips, int numPositions) {
+        this.name = name;
+        this.numShips = numShips;
         this.numPositions = numPositions;
-        this.color = color;
-
     }
 
     public int getNumPositions() {
         return numPositions;
     }
 
-    public Color getColor(){
-        return color;
+    public int getNumShips() {
+        return numShips;
     }
 }

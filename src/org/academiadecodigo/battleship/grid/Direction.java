@@ -19,8 +19,8 @@ public enum Direction {
         this.y = y;
     }
 
-    public static Direction direction()
-    {
+    public static Direction randomDirection() {
+
         double random = Math.random();
 
         if(random <0.25)

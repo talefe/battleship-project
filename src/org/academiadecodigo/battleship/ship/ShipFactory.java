@@ -44,7 +44,7 @@ public class ShipFactory {
 
             worked = true;
             positions[0] = new Position();
-            direction = Direction.direction();
+            direction = Direction.randomDirection();
 
             int x = positions[0].getCol();
             int y = positions[0].getRow();
@@ -137,5 +137,6 @@ public class ShipFactory {
             }
         }
         return positions;
+
     }
 }

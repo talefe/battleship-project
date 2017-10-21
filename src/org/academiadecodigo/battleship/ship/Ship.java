@@ -1,10 +1,8 @@
 package org.academiadecodigo.battleship.ship;
 
-import org.academiadecodigo.battleship.grid.Grid;
 import org.academiadecodigo.battleship.grid.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-
+import org.academiadecodigo.battleship.sound.SoundManager;
+import org.academiadecodigo.battleship.sound.SoundType;
 
 public class Ship {
 
@@ -12,6 +10,7 @@ public class Ship {
     private Position[] positions;
     private int life;
     private boolean destroyed = false;
+    private SoundManager soundManager = new SoundManager();
 
 
     public Ship(ShipType shipType) {
@@ -22,16 +21,6 @@ public class Ship {
 
     public void setPositions(Position[] positions) {
         this.positions = positions;
-    }
-
-    public void fillShip() {
-
-        for (Position pos : positions) {
-
-            Rectangle ship = new Rectangle(Grid.colToPixel(pos.getCol()), Grid.rowToPixel(pos.getRow()), Grid.CELLSIZE, Grid.CELLSIZE);
-            ship.setColor(Color.GREEN);
-            ship.fill();
-        }
     }
 
     public Position[] getPositions() {
@@ -61,14 +50,13 @@ public class Ship {
 
             if (pos.areCoordinatesEqual(x, y)) {
                 life--;
-                System.out.println(this.shipType + " HIT");
-                Rectangle cell = new Rectangle(Grid.colToPixel(x) +1, Grid.rowToPixel(y) +1, Grid.CELLSIZE -1, Grid.CELLSIZE-1);
-                cell.setColor(this.shipType.getColor());
-                cell.fill();
+                pos.drawHit();
+                soundManager.play(SoundType.HIT);
+
 
                 if(life == 0){
-                    System.out.println(this.shipType + " DESTROYED");
                     destroyed = true;
+                    soundManager.play(SoundType.DESTROYED);
 
                 }
             }
@@ -78,6 +66,4 @@ public class Ship {
     public boolean isDestroyed(){
         return destroyed;
     }
-
-
 }

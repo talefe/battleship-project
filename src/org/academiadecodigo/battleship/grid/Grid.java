@@ -102,16 +102,7 @@ public class Grid {
         }
     }
 
-    public void drawCross(int x, int y) {
 
-        Line lineA = new Line(Grid.colToPixel(x), Grid.rowToPixel(y), Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y) + Grid.CELLSIZE);
-        lineA.setColor(Color.GREEN);
-        Line lineB = new Line(Grid.colToPixel(x), Grid.rowToPixel(y) + Grid.CELLSIZE, Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y));
-        lineB.setColor(Color.GREEN);
-
-        lineA.draw();
-        lineB.draw();
-    }
 
     public void gameLabels(){
         Rectangle square;
@@ -121,8 +112,9 @@ public class Grid {
         battleship.setColor(Color.GREEN);
         battleship.draw();
         //amount of ships left placed to the right of the squares
-        battleshipNumber = new Text(PADDING + getWidth() + CELLSIZE + CELLSIZE * 6, PADDING + CELLSIZE, "" + battleshipLeft);
+        battleshipNumber = new Text(PADDING + getWidth() + CELLSIZE + CELLSIZE * 6, PADDING + CELLSIZE + 10, "" + battleshipLeft);
         battleshipNumber.setColor(Color.GREEN);
+        battleshipNumber.grow(10,10);
         battleshipNumber.draw();
 
 

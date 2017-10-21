@@ -8,9 +8,13 @@ import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 
+import java.awt.*;
+
 public class MouseController implements MouseHandler {
 
     private Game game;
+    private int CROSSHAIR_CURSOR;
+    private Cursor cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
 
     public MouseController(Game g) {
 
@@ -18,6 +22,8 @@ public class MouseController implements MouseHandler {
 
         Mouse mouse = new Mouse(this);
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
+        this.cursor = cursor;
+
     }
 
     @Override

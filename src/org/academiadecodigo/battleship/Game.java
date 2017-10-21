@@ -1,5 +1,6 @@
 package org.academiadecodigo.battleship;
 
+import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.grid.Grid;
 import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.ship.Ship;
@@ -17,7 +18,9 @@ import javax.sound.midi.Soundbank;
 public class Game {
 
     private Grid grid = new Grid();
+    private Graphics graphics = new Graphics();
     private Rectangle cell;
+
 
 
     private ShipFactory shipFactory = new ShipFactory();
@@ -38,10 +41,13 @@ public class Game {
 
         MouseController mc = new MouseController(this);
 
-        Rectangle initialScreen = new Rectangle(10, 10, 800 + Grid.PADDING, 800);
-        initialScreen.fill();
-        Picture startImage = new Picture(10,10, "battleship.jpg");
-        startImage.draw();
+        graphics.startScreen();
+
+    }
+
+    public void endGame(){
+
+        graphics.endScreen();
 
     }
 
@@ -82,9 +88,7 @@ public class Game {
         if (outOfBounds) {
             return;
         }
-       // if(position was used before){
-       //     return;
-       // }
+
         for (Ship ship : ships) {
 
             if (ship.isHit(x, y)) {
@@ -122,14 +126,13 @@ public class Game {
                     howManyShipsText.setText("Ships remaining: " + liveships);
                 }
                 if(isGameFinished()){
-                  finalScreen();
+                  endGame();
                 }
                 return;
             }
         }
         gameInformation.setText("MISS");
-        System.out.println("MISS");
-        grid.drawCross(x, y);
+        graphics.missSymbol(x,y);
 
     }
 
@@ -145,13 +148,7 @@ public class Game {
        return false;
     }
 
-    public void finalScreen(){
-        Rectangle initialScreen = new Rectangle(10, 10, 800 + Grid.PADDING, 800);
-        initialScreen.fill();
-        Text finalText = new Text(410,410, "//The End");
-        finalText.setColor(Color.GREEN);
-        finalText.draw();
-    }
+
 
 
     public Position[] getHitPositions(){

@@ -49,7 +49,6 @@ public class Game {
     }
 
     public void hitGuess(int x, int y) {
-
         boolean outOfBounds = x < 0 || y < 0 || x >= Grid.COLS || y >= Grid.ROWS;
 
         if (outOfBounds) {
@@ -60,20 +59,16 @@ public class Game {
 
             if (ship.isHit(x, y)) {
                 ship.hit(x, y);
-            }
+                graphics.drawHit(x, y);
 
-            if (gameStats.isGameFinished()) {
-                endGame();
+                if (gameStats.isGameFinished()) {
+                    endGame();
+                }
+                return;
             }
-
-            return;
         }
 
         graphics.drawMiss(x, y);
-    }
-
-    public boolean started() {
-        return gameStats.isGameStart();
     }
 
     public Grid getGrid() {

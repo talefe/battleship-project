@@ -6,7 +6,7 @@ public class GameStats {
 
     private boolean gameStart = false;
     private boolean gameFinished = false;
-    private int liveships;
+    private int liveships = getLiveships();
 
     public boolean isGameStart() {
         return gameStart;

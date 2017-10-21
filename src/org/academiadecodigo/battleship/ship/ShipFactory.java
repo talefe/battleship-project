@@ -106,7 +106,6 @@ public class ShipFactory {
 
                     if (occupiedPositions[j] != null) {
                         if (positions[i].getCol() == occupiedPositions[j].getCol() && positions[i].getRow() == occupiedPositions[j].getRow()) {
-                            System.out.println("igual" + " col : " + positions[i].getCol() + " row : " + positions[i].getRow());
 
                             return generateShipPositions(positions.length);
                         }

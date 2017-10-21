@@ -3,7 +3,7 @@ package org.academiadecodigo.battleship.grid;
 public class Position {
 
     private Graphics graphics;
-    private boolean clicked;
+    private boolean clicked = false;
     private int col;
     private int row;
 
@@ -29,14 +29,8 @@ public class Position {
         return this.col == x && this.row == y;
     }
 
-    public void drawHit() {
+    public void click() {
         clicked = true;
-        graphics.drawHit(this.col, this.row);
-    }
-
-    public void drawMiss() {
-        clicked = true;
-        graphics.drawMiss(this.col, this.row);
     }
 
     public boolean isClicked() {

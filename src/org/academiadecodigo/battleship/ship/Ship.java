@@ -1,5 +1,7 @@
 package org.academiadecodigo.battleship.ship;
 
+import org.academiadecodigo.battleship.GameStats;
+import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.sound.SoundManager;
 import org.academiadecodigo.battleship.sound.SoundType;
@@ -11,6 +13,7 @@ public class Ship {
     private int life;
     private boolean destroyed = false;
     private SoundManager soundManager = new SoundManager();
+    private Graphics graphics;
 
 
     public Ship(ShipType shipType) {
@@ -21,10 +24,6 @@ public class Ship {
 
     public void setPositions(Position[] positions) {
         this.positions = positions;
-    }
-
-    public Position[] getPositions() {
-        return positions;
     }
 
     public ShipType getShipType() {
@@ -50,9 +49,8 @@ public class Ship {
 
             if (pos.areCoordinatesEqual(x, y)) {
                 life--;
-                pos.drawHit();
+                pos.click();
                 soundManager.play(SoundType.HIT);
-
 
                 if(life == 0){
                     destroyed = true;

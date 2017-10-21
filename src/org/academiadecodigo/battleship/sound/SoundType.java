@@ -3,7 +3,7 @@ package org.academiadecodigo.battleship.sound;
 public enum SoundType {
     START("theme.wav"),
     HIT("hit2.wav"),
-    MISS("miss2.wav"),
+    MISS("miss2.mp3"),
     DESTROYED("explosion.mp3"),
     END("end.wav");
 

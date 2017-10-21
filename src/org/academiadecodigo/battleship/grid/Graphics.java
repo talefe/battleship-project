@@ -41,6 +41,7 @@ public class Graphics {
     }
 
     public void drawHit(int x, int y) {
+
         Line lineA = new Line(Grid.colToPixel(x), Grid.rowToPixel(y), Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y) + Grid.CELLSIZE);
         lineA.setColor(Color.GREEN);
         Line lineB = new Line(Grid.colToPixel(x), Grid.rowToPixel(y) + Grid.CELLSIZE, Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y));
@@ -50,6 +51,7 @@ public class Graphics {
     }
 
     public void drawMiss(int x, int y) {
+
         Rectangle cell = new Rectangle(Grid.colToPixel(x) +1, Grid.rowToPixel(y) +1, Grid.CELLSIZE -1, Grid.CELLSIZE-1);
         cell.setColor(Color.GREEN);
         cell.fill();

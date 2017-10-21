@@ -5,10 +5,12 @@ import org.academiadecodigo.battleship.grid.Grid;
 import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.ship.Ship;
 import org.academiadecodigo.battleship.ship.ShipFactory;
+import org.academiadecodigo.battleship.sound.Sound;
+import org.academiadecodigo.battleship.sound.SoundManager;
+import org.academiadecodigo.battleship.sound.SoundType;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import javax.sound.midi.Soundbank;
 
@@ -20,8 +22,7 @@ public class Game {
     private Grid grid = new Grid();
     private Graphics graphics = new Graphics();
     private Rectangle cell;
-
-
+    private SoundManager soundManager = new SoundManager();
 
     private ShipFactory shipFactory = new ShipFactory();
     private Ship[] ships;
@@ -37,11 +38,13 @@ public class Game {
 
 
 
+
     public void init() {
 
         MouseController mc = new MouseController(this);
 
         graphics.startScreen();
+        soundManager.play(SoundType.START);
 
     }
 
@@ -54,7 +57,7 @@ public class Game {
     public void start() {
 
         gameStart = true;
-
+        soundManager.stop(SoundType.START);
         grid.gridInit();
 
         ships = shipFactory.createNavy();
@@ -99,12 +102,12 @@ public class Game {
                 hitPositions[index] = pos;
                 index++;
 
-
                 ship.hit(x, y);
+                soundManager.play(SoundType.HIT);
 
                 gameInformation.setText(ship.getShipType() +" HIT");
                 if(ship.isDestroyed()){
-
+                    // how many ships are left
                     switch (ship.getShipType()){
 
                         case BATTLESHIP:
@@ -133,6 +136,7 @@ public class Game {
         }
         gameInformation.setText("MISS");
         graphics.missSymbol(x,y);
+        soundManager.play(SoundType.MISS);
 
     }
 
@@ -143,6 +147,7 @@ public class Game {
     public boolean isGameFinished(){
        if(liveships == 0) {
            gameFinished = true;
+           soundManager.play(SoundType.END);
            return gameFinished;
        }
        return false;

@@ -36,10 +36,12 @@ public class Game {
 
         grid.gridInit();
 
+
         shipFactory.setGenerator(generator);
         ships = shipFactory.createNavy();
 
         graphics.gameInfo();
+        graphics.shipsLeft();
 
     }
 
@@ -67,6 +69,7 @@ public class Game {
 
                     graphics.getGameStats().killShip();
                     graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
+                    graphics.setShipsLeftText();
                 }
 
                 if (graphics.getGameStats().isGameFinished()) {

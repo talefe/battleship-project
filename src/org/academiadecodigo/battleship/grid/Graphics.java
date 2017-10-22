@@ -17,6 +17,7 @@ public class Graphics {
     private Text info;
     private Text shipsLeft;
 
+
     private int PADDING = Grid.PADDING;
     private int CELLSIZE = Grid.CELLSIZE;
     private int WIDTH = Grid.WIDTH;
@@ -87,7 +88,7 @@ public class Graphics {
         numbers();
         aBc();
         gameLabels();
-        shipsLeft();
+
         setBattleshipLeft();
         setCarrierLeft();
         setCruiserLeft();

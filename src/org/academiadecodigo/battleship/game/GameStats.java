@@ -18,7 +18,7 @@ public class GameStats {
 
     private int shots = 0;
     private int misses = 0;
-    private int score = 0;
+    private int score = 100;
 
     public boolean isGameStarted() {
         return gameStarted;
@@ -89,4 +89,26 @@ public class GameStats {
     public int getCarrier() {
         return carrier;
     }
+
+    public void setShots() {
+        shots++;
+    }
+
+    public void setMisses(){
+        score--;
+        misses++;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getShots() {
+        return shots;
+    }
+
+    public int getMisses() {
+        return misses;
+    }
 }
+

@@ -258,6 +258,21 @@ public class Graphics {
         info.draw();
     }
 
+    public void gameResults(){
+
+        Text shots = new Text(400,460, "SHOTS: "+gameStats.getShots());
+        Text misses = new Text(400, 500,"MISSES: "+gameStats.getMisses());
+        Text score = new Text(400,540, "TOTAL SCORE: "+gameStats.getScore());
+
+        shots.setColor(Color.GREEN);
+        misses.setColor(Color.GREEN);
+        score.setColor(Color.GREEN);
+        shots.draw();
+        misses.draw();
+        score.draw();
+
+    }
+
     public void setGameInfo(String information) {
 
         info.setText(information);
@@ -268,19 +283,12 @@ public class Graphics {
         shipsLeft.setText("SHIPS LEFT: " + gameStats.shipsRemaining());
     }
 
-    public void setBattleshipLeft(){
+
+
+    public void setShipsStats(){
         battleshipLeft.setText("" + gameStats.getBattleship());
-    }
-
-    public void setCruiserLeft(){
         cruiserLeft.setText("" + gameStats.getCruiser());
-    }
-
-    public void setSubmarineLeft(){
         submarineLeft.setText("" + gameStats.getSubmarine());
-    }
-
-    public void setCarrierLeft(){
         carrierLeft.setText("" + gameStats.getCarrier());
     }
     public GameStats getGameStats() {

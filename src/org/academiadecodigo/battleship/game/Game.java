@@ -56,7 +56,7 @@ public class Game {
         if (outOfBounds) {
             return;
         }
-
+        graphics.getGameStats().setShots();
         for (Ship ship : ships) {
 
             if (ship.isHit(x, y)) {
@@ -75,22 +75,9 @@ public class Game {
                     graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
                     graphics.setShipsLeftText();
                     graphics.getGameStats().shipTypeLife(ship.getShipType());
+                    graphics.setShipsStats();
 
-                    switch (ship.getShipType()){
 
-                        case BATTLESHIP:
-                            graphics.setBattleshipLeft();
-                            break;
-                        case CRUISER:
-                            graphics.setCruiserLeft();
-                            break;
-                        case SUBMARINE:
-                            graphics.setSubmarineLeft();
-                            break;
-                        case SMALL_SHIP:
-                            graphics.setCarrierLeft();
-                            break;
-                    }
 
                 }
 
@@ -106,10 +93,12 @@ public class Game {
         soundManager.play(SoundType.MISS);
 
         graphics.setGameInfo("MISS");
+        graphics.getGameStats().setMisses();
     }
 
     public void endGame() {
         graphics.endScreen();
+        graphics.gameResults();
         soundManager.loop(SoundType.END);
     }
 

@@ -35,4 +35,8 @@ public class GameStats {
     public void setGameStart(boolean gameStart) {
         this.gameStart = gameStart;
     }
+
+    public void setLiveships() {
+        liveships--;
+    }
 }

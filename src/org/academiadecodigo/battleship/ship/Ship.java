@@ -55,6 +55,7 @@ public class Ship {
                     destroyed = true;
                     soundManager.play(SoundType.DESTROYED);
 
+
                 }
             }
         }

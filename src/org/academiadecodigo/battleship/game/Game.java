@@ -62,6 +62,9 @@ public class Game {
             if (ship.isHit(x, y)) {
                 ship.hit(x, y);
                 graphics.drawHit(x, y);
+                if(ship.isDestroyed()){
+                    gameStats.setLiveships();
+                }
 
                 if (gameStats.isGameFinished()) {
                     endGame();

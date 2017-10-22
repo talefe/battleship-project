@@ -1,5 +1,7 @@
 package org.academiadecodigo.battleship;
 
+import org.academiadecodigo.battleship.game.Game;
+import org.academiadecodigo.battleship.game.GameStats;
 import org.academiadecodigo.battleship.grid.Grid;
 import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;

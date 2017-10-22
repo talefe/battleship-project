@@ -23,11 +23,11 @@ public enum Direction {
 
         double random = Math.random();
 
-        if(random <0.25)
+        if (random < 0.25)
             return LEFT;
-        else if(random >= 0.25 && random < 0.5)
+        else if (random >= 0.25 && random < 0.5)
             return RIGHT;
-        else if(random >= 0.5 && random < 0.75)
+        else if (random >= 0.5 && random < 0.75)
             return UP;
         else
             return DOWN;

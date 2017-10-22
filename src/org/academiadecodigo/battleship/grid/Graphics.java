@@ -1,15 +1,14 @@
 package org.academiadecodigo.battleship.grid;
 
-import org.academiadecodigo.battleship.GameStats;
+import org.academiadecodigo.battleship.game.GameStats;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-/**
- * Created by codecadet on 21/10/2017.
- */
+// THIS CLASS NEEDS TO BE CLEANED
+
 public class Graphics {
 
     private GameStats gameStats;
@@ -52,7 +51,7 @@ public class Graphics {
 
     public void drawMiss(int x, int y) {
 
-        Rectangle cell = new Rectangle(Grid.colToPixel(x) +1, Grid.rowToPixel(y) +1, Grid.CELLSIZE -1, Grid.CELLSIZE-1);
+        Rectangle cell = new Rectangle(Grid.colToPixel(x) + 1, Grid.rowToPixel(y) + 1, Grid.CELLSIZE - 1, Grid.CELLSIZE - 1);
         cell.setColor(Color.GREEN);
         cell.fill();
     }
@@ -123,16 +122,15 @@ public class Graphics {
     }
 
 
-
-    public void gameLabels(){
+    public void gameLabels() {
         Rectangle square;
 
         //battleship
 
 
-        for (int i = 0; i <5 ; i++) {
+        for (int i = 0; i < 5; i++) {
 
-            square = new Rectangle(PADDING + WIDTH + CELLSIZE + (CELLSIZE*i), PADDING + CELLSIZE, CELLSIZE, CELLSIZE);
+            square = new Rectangle(PADDING + WIDTH + CELLSIZE + (CELLSIZE * i), PADDING + CELLSIZE, CELLSIZE, CELLSIZE);
             square.setColor(Color.GREEN);
             square.draw();
 
@@ -140,9 +138,9 @@ public class Graphics {
 
         //cruiser
 
-        for (int i = 0; i <4 ; i++) {
+        for (int i = 0; i < 4; i++) {
 
-            square = new Rectangle(PADDING + WIDTH + CELLSIZE + (CELLSIZE*i), PADDING + CELLSIZE*3, CELLSIZE, CELLSIZE);
+            square = new Rectangle(PADDING + WIDTH + CELLSIZE + (CELLSIZE * i), PADDING + CELLSIZE * 3, CELLSIZE, CELLSIZE);
             square.setColor(Color.GREEN);
             square.draw();
 
@@ -152,10 +150,9 @@ public class Graphics {
         //submarine
 
 
+        for (int i = 0; i < 3; i++) {
 
-        for (int i = 0; i <3 ; i++) {
-
-            square = new Rectangle(PADDING + WIDTH + CELLSIZE + (CELLSIZE*i), PADDING + CELLSIZE*5, CELLSIZE, CELLSIZE);
+            square = new Rectangle(PADDING + WIDTH + CELLSIZE + (CELLSIZE * i), PADDING + CELLSIZE * 5, CELLSIZE, CELLSIZE);
             square.setColor(Color.GREEN);
             square.draw();
 
@@ -164,7 +161,7 @@ public class Graphics {
         //carrier
 
 
-        for (int i = 0; i < 2 ; i++) {
+        for (int i = 0; i < 2; i++) {
 
             square = new Rectangle(PADDING + WIDTH + CELLSIZE + (CELLSIZE * i), PADDING + CELLSIZE * 7, CELLSIZE, CELLSIZE);
             square.setColor(Color.GREEN);
@@ -173,16 +170,16 @@ public class Graphics {
     }
 
 
-    public void setBattleshipLeft(){
+    public void setBattleshipLeft() {
     }
 
-    public void setCruiserLeft(){
+    public void setCruiserLeft() {
     }
 
-    public void setSubmarineLeft(){
+    public void setSubmarineLeft() {
     }
 
-    public void setCarrierLeft(){
+    public void setCarrierLeft() {
     }
 
     public void shipsLeft() {

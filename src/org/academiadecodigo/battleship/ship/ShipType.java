@@ -1,7 +1,5 @@
 package org.academiadecodigo.battleship.ship;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-
 public enum ShipType {
 
     BATTLESHIP("Battleship", 1, 5),
@@ -19,11 +17,15 @@ public enum ShipType {
         this.numPositions = numPositions;
     }
 
-    public int getNumPositions() {
-        return numPositions;
+    public String getName() {
+        return name;
     }
 
     public int getNumShips() {
         return numShips;
+    }
+
+    public int getNumPositions() {
+        return numPositions;
     }
 }

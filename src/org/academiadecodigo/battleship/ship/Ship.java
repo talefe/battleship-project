@@ -1,6 +1,5 @@
 package org.academiadecodigo.battleship.ship;
 
-import org.academiadecodigo.battleship.GameStats;
 import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.sound.SoundManager;
@@ -52,7 +51,7 @@ public class Ship {
                 pos.click();
                 soundManager.play(SoundType.HIT);
 
-                if(life == 0){
+                if (life == 0) {
                     destroyed = true;
                     soundManager.play(SoundType.DESTROYED);
 
@@ -61,7 +60,7 @@ public class Ship {
         }
     }
 
-    public boolean isDestroyed(){
+    public boolean isDestroyed() {
         return destroyed;
     }
 }

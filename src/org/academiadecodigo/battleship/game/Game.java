@@ -1,5 +1,6 @@
-package org.academiadecodigo.battleship;
+package org.academiadecodigo.battleship.game;
 
+import org.academiadecodigo.battleship.MouseController;
 import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.grid.Grid;
 import org.academiadecodigo.battleship.ship.Ship;
@@ -12,13 +13,15 @@ import org.academiadecodigo.battleship.sound.SoundType;
  */
 public class Game {
 
-    private GameStats gameStats = new GameStats();
-    private Grid grid = new Grid();
-    private SoundManager soundManager = new SoundManager();
-    private ShipFactory shipFactory = new ShipFactory();
     private Graphics graphics = new Graphics();
+    private SoundManager soundManager = new SoundManager();
+    private Grid grid = new Grid();
+
+    private GameStats gameStats = new GameStats();
+    private ShipFactory shipFactory = new ShipFactory();
 
     private Ship[] ships;
+
 
     public void init() {
 
@@ -28,6 +31,8 @@ public class Game {
         soundManager.play(SoundType.START);
     }
 
+    // ?????????? recebe um keyboard event para escolher HardMode(h) ou EasyMode(e) ??????????
+
     public void start() {
 
         gameStats.setGameStart(true);
@@ -36,6 +41,7 @@ public class Game {
 
         grid.gridInit();
 
+        shipFactory.setGenerator(new EasyMode());
         ships = shipFactory.createNavy();
 
         graphics.shipsLeft();
@@ -43,12 +49,8 @@ public class Game {
         graphics.gameInfo();
     }
 
-    public void endGame() {
-        graphics.endScreen();
-        soundManager.play(SoundType.END);
-    }
-
     public void hitGuess(int x, int y) {
+
         boolean outOfBounds = x < 0 || y < 0 || x >= Grid.COLS || y >= Grid.ROWS;
 
         if (outOfBounds) {
@@ -69,6 +71,11 @@ public class Game {
         }
 
         graphics.drawMiss(x, y);
+    }
+
+    public void endGame() {
+        graphics.endScreen();
+        soundManager.play(SoundType.END);
     }
 
     public Grid getGrid() {

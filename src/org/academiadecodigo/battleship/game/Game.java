@@ -3,6 +3,7 @@ package org.academiadecodigo.battleship.game;
 import org.academiadecodigo.battleship.Controller;
 import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.grid.Grid;
+import org.academiadecodigo.battleship.grid.Position;
 import org.academiadecodigo.battleship.grid.PositionGenerator;
 import org.academiadecodigo.battleship.ship.Ship;
 import org.academiadecodigo.battleship.ship.ShipFactory;
@@ -15,6 +16,8 @@ public class Game {
     private SoundManager soundManager = new SoundManager();
     private Grid grid = new Grid();
     private ShipFactory shipFactory = new ShipFactory();
+    private Position[] alredyHit = new Position[23];
+    private int index = 0;
 
     private Ship[] ships;
 
@@ -61,6 +64,8 @@ public class Game {
 
             if (ship.isHit(x, y)) {
 
+                alreadyHit(x,y);//MUdança
+
                 ship.hit(x, y);
 
                 graphics.drawHit(x, y);
@@ -97,6 +102,13 @@ public class Game {
         graphics.getGameStats().setMisses();
     }
 
+    private void alreadyHit(int x, int y) {//Mudança
+
+        Position pos = new Position(x,y);
+        alredyHit[index] = pos;
+        index++;
+    }
+
     public void endGame() {
         graphics.endScreen();
         graphics.gameResults();
@@ -105,6 +117,10 @@ public class Game {
 
     public Grid getGrid() {
         return grid;
+    }
+
+    public Position[] getAlredyHit() {//Mudança
+        return alredyHit;
     }
 }
 

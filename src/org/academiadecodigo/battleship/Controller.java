@@ -59,11 +59,8 @@ public class Controller implements MouseHandler, KeyboardHandler {
             y = -1;
         }
 
-
-        // FIX THIS
-        if (pos.isClicked()) {
+        if(alreadyHit(x,y))//Mudança
             return;
-        }
 
         if (!gameStats.isGameFinished()) {
             game.hitGuess(x, y);
@@ -96,5 +93,18 @@ public class Controller implements MouseHandler, KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
+    }
+
+    public boolean alreadyHit(int x,int y){//Mudança
+
+        Position pos = new Position(x, y);
+        for (int i = 0; i < game.getAlredyHit().length ; i++) {
+
+            if(game.getAlredyHit()[i]!= null) {
+                if (pos.getCol() == game.getAlredyHit()[i].getCol() && pos.getRow() == game.getAlredyHit()[i].getRow())
+                    return true;
+            }
+        }
+        return false;
     }
 }

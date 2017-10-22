@@ -86,6 +86,7 @@ public class Graphics {
         lineB3.draw();
     }
 
+
     public void drawMiss(int x, int y) {
 
         Rectangle cell = new Rectangle(Grid.colToPixel(x) + 1, Grid.rowToPixel(y) + 1, Grid.CELLSIZE - 1, Grid.CELLSIZE - 1);
@@ -103,8 +104,7 @@ public class Graphics {
         grid = new Rectangle(Grid.PADDING, Grid.PADDING, Grid.WIDTH, Grid.HEIGHT);
         grid.setColor(Color.GREEN);
         grid.draw();
-        linesX();
-        linesY();
+        lines();
         numbers();
         aBc();
         gameLabels();
@@ -112,7 +112,7 @@ public class Graphics {
 
     }
 
-    public void linesX() {
+    public void lines() {
         int nextLine = CELLSIZE;
 
         for (int i = 0; i < COLS - 1; i++) {
@@ -121,21 +121,15 @@ public class Graphics {
             gridLine = new Line(PADDING + nextLine, PADDING, PADDING + nextLine, PADDING + HEIGHT);
             gridLine.setColor(Color.GREEN);
             gridLine.draw();
+            Line gridLine2;
+            gridLine2 = new Line(PADDING, PADDING + nextLine, PADDING + WIDTH, PADDING + nextLine);
+            gridLine2.setColor(Color.GREEN);
+            gridLine2.draw();
             nextLine += CELLSIZE;
         }
     }
 
-    public void linesY() {
-        int nextLine = CELLSIZE;
 
-        for (int i = 0; i < COLS - 1; i++) {
-            Line gridLine;
-            gridLine = new Line(PADDING, PADDING + nextLine, PADDING + WIDTH, PADDING + nextLine);
-            gridLine.setColor(Color.GREEN);
-            gridLine.draw();
-            nextLine += CELLSIZE;
-        }
-    }
 
     public void numbers() {
         Text text;

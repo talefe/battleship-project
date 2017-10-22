@@ -42,8 +42,6 @@ public abstract class PositionGenerator {
 
             for (int j = 0; j < occupiedPositions.length; j++) {
 
-                if (occupiedPositions[0] != null) {
-
                     if (occupiedPositions[j] != null) {
                         if (positions[i].getCol() == occupiedPositions[j].getCol() && positions[i].getRow() == occupiedPositions[j].getRow()) {
 
@@ -51,7 +49,6 @@ public abstract class PositionGenerator {
                         }
                     }
 
-                }
             }
 
             temporaryPositions[i] = positions[i];

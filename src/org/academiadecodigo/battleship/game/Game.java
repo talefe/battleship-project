@@ -1,8 +1,9 @@
 package org.academiadecodigo.battleship.game;
 
-import org.academiadecodigo.battleship.MouseController;
+import org.academiadecodigo.battleship.Controller;
 import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.grid.Grid;
+import org.academiadecodigo.battleship.grid.PositionGenerator;
 import org.academiadecodigo.battleship.ship.Ship;
 import org.academiadecodigo.battleship.ship.ShipFactory;
 import org.academiadecodigo.battleship.sound.SoundManager;
@@ -21,16 +22,14 @@ public class Game {
 
     public void init() {
 
-        MouseController mc = new MouseController(this, gameStats);
+        Controller mc = new Controller(this, gameStats);
 
         graphics.startScreen();
 
         soundManager.loop(SoundType.START);
     }
 
-    // ?????????? recebe um keyboard event para escolher HardMode(h) ou EasyMode(e) ??????????
-
-    public void start() {
+    public void start(PositionGenerator generator) {
 
         gameStats.startGame();
 
@@ -38,7 +37,7 @@ public class Game {
 
         grid.gridInit();
 
-        shipFactory.setGenerator(new EasyMode());
+        shipFactory.setGenerator(generator);
         ships = shipFactory.createNavy();
 
         graphics.gameInfo();

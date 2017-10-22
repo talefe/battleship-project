@@ -29,6 +29,7 @@ public class Position {
         return this.col == x && this.row == y;
     }
 
+    // FIX THIS
     public void click() {
         clicked = true;
     }

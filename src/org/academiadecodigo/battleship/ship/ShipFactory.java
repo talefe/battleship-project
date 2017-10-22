@@ -18,6 +18,19 @@ public class ShipFactory {
                 new Ship(ShipType.SUBMARINE),
                 new Ship(ShipType.SMALL_SHIP),
                 new Ship(ShipType.SMALL_SHIP)
+
+
+                // trying to iterate over enum of ShipType to create ships according to numShips
+
+                /* for (ShipType type : ShipType.values()) {
+
+                    for (int i = 0; i < type.getNumShips(); i++) {
+
+                        new Ship(type);
+                    }
+                } */
+
+
         };
 
         for (Ship ship : navy) {

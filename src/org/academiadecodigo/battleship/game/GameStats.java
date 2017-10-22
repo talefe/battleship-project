@@ -8,7 +8,16 @@ public class GameStats {
 
     private boolean gameStart = false;
     private boolean gameFinished = false;
-    private int liveships = getLiveships();  // need to decrement liveships when ships are destroyed
+    private int liveships = getLiveships();
+
+    private int battleship = ShipType.BATTLESHIP.getNumPositions();
+    private int cruiser = ShipType.CRUISER.getNumPositions();
+    private int submarine = ShipType.SUBMARINE.getNumPositions();
+    private int smallShip = ShipType.SMALL_SHIP.getNumPositions();
+
+    public GameStats(){
+        getLiveships();
+    }
 
     public boolean isGameStart() {
         return gameStart;
@@ -21,6 +30,24 @@ public class GameStats {
         }
 
         return liveships;
+    }
+
+    public void shipTypeLife(ShipType type) {
+
+        switch (type) {
+            case BATTLESHIP:
+                battleship--;
+                break;
+            case CRUISER:
+                cruiser--;
+                break;
+            case SUBMARINE:
+                submarine--;
+                break;
+            case SMALL_SHIP:
+                smallShip--;
+                break;
+        }
     }
 
     public boolean isGameFinished() {
@@ -38,5 +65,10 @@ public class GameStats {
 
     public void setLiveships() {
         liveships--;
+    }
+
+    public int shipsRemaining(){
+
+        return liveships;
     }
 }

@@ -2,10 +2,10 @@ package org.academiadecodigo.battleship.ship;
 
 public enum ShipType {
 
-    BATTLESHIP("Battleship", 1, 5),
-    CRUISER("Cruiser", 2, 4),
-    SUBMARINE("Submarine", 2, 3),
-    CARRIER("Carrier", 2, 2);
+    BATTLESHIP("BATTLESHIP", 1, 5),
+    CRUISER("CRUISER", 2, 4),
+    SUBMARINE("SUBMARINE", 2, 3),
+    SMALL_SHIP("SMALL SHIP" , 2, 2);
 
     private String name;
     private int numShips;

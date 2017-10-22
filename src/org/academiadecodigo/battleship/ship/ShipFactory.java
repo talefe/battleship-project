@@ -16,8 +16,8 @@ public class ShipFactory {
                 new Ship(ShipType.CRUISER),
                 new Ship(ShipType.SUBMARINE),
                 new Ship(ShipType.SUBMARINE),
-                new Ship(ShipType.CARRIER),
-                new Ship(ShipType.CARRIER)
+                new Ship(ShipType.SMALL_SHIP),
+                new Ship(ShipType.SMALL_SHIP)
 
 
                 // trying to iterate over enum of ShipType to create ships according to numShips

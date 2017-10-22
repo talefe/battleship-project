@@ -47,6 +47,8 @@ public class Game {
         graphics.shipsLeft();
 
         graphics.gameInfo();
+
+
     }
 
     public void hitGuess(int x, int y) {
@@ -60,10 +62,19 @@ public class Game {
         for (Ship ship : ships) {
 
             if (ship.isHit(x, y)) {
+
                 ship.hit(x, y);
+
                 graphics.drawHit(x, y);
+
+                graphics.setGameInfo(ship.getShipType().getName() + " HIT");
+
+                gameStats.shipTypeLife(ship.getShipType());
+
                 if(ship.isDestroyed()){
                     gameStats.setLiveships();
+                    graphics.shipsLeft();
+                    graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
                 }
 
                 if (gameStats.isGameFinished()) {
@@ -74,7 +85,10 @@ public class Game {
         }
 
         graphics.drawMiss(x, y);
+
         soundManager.play(SoundType.MISS);
+
+        graphics.setGameInfo("MISS");
     }
 
     public void endGame() {

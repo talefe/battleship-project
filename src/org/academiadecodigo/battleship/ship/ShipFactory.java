@@ -5,33 +5,21 @@ import org.academiadecodigo.battleship.grid.PositionGenerator;
 public class ShipFactory {
 
     private PositionGenerator generator;
-    private Ship[] navy;
+    private Ship[] navy = new Ship[getTotalShips()];
 
 
     public Ship[] createNavy() {
 
-        navy = new Ship[]{
-                new Ship(ShipType.BATTLESHIP),
-                new Ship(ShipType.CRUISER),
-                new Ship(ShipType.CRUISER),
-                new Ship(ShipType.SUBMARINE),
-                new Ship(ShipType.SUBMARINE),
-                new Ship(ShipType.SMALL_SHIP),
-                new Ship(ShipType.SMALL_SHIP)
+        int index = 0;
 
+        for (ShipType type : ShipType.values()) {
 
-                // trying to iterate over enum of ShipType to create ships according to numShips
+            for (int i = 0; i < type.getNumShips(); i++) {
 
-                /* for (ShipType type : ShipType.values()) {
-
-                    for (int i = 0; i < type.getNumShips(); i++) {
-
-                        new Ship(type);
-                    }
-                } */
-
-
-        };
+                navy[index] = new Ship(type);
+                index++;
+            }
+        }
 
         for (Ship ship : navy) {
 
@@ -46,4 +34,15 @@ public class ShipFactory {
         this.generator = generator;
     }
 
+
+    public int getTotalShips() {
+
+        int total = 0;
+
+        for (int i = 0; i < ShipType.values().length; i++) {
+
+            total += ShipType.values()[i].getNumShips();
+        }
+        return total;
+    }
 }

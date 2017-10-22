@@ -16,6 +16,10 @@ public class Graphics {
     private Rectangle grid;
     private Text info;
     private Text shipsLeft;
+    private Text battleshipLeft;
+    private Text cruiserLeft;
+    private Text submarineLeft;
+    private Text carrierLeft;
 
 
     private int PADDING = Grid.PADDING;
@@ -89,10 +93,7 @@ public class Graphics {
         aBc();
         gameLabels();
 
-        setBattleshipLeft();
-        setCarrierLeft();
-        setCruiserLeft();
-        setSubmarineLeft();
+
     }
 
     public void linesX() {
@@ -192,48 +193,48 @@ public class Graphics {
     }
 
 
-    public void setBattleshipLeft() {
+    public void BattleshipLeft() {
 
-        Text shipName = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE / 4, ShipType.BATTLESHIP.getName());
-        shipName.setColor(Color.GREEN);
-        shipName.draw();
+        Text battleship = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE / 4, ShipType.BATTLESHIP.getName());
+        battleship.setColor(Color.GREEN);
+        battleship.draw();
 
-        Text battleshipLeft = new Text(PADDING + WIDTH + CELLSIZE * 7, PADDING + CELLSIZE + CELLSIZE / 4, "" + gameStats.getBattleship());
+        battleshipLeft = new Text(PADDING + WIDTH + CELLSIZE * 7, PADDING + CELLSIZE + CELLSIZE / 4, "" + gameStats.getBattleship());
         battleshipLeft.setColor(Color.GREEN);
         battleshipLeft.grow(10, 10);
         battleshipLeft.draw();
     }
 
-    public void setCruiserLeft() {
+    public void CruiserLeft() {
 
-        Text shipName = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 2 + CELLSIZE / 4, ShipType.CRUISER.getName());
-        shipName.setColor(Color.GREEN);
-        shipName.draw();
+        Text cruiser = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 2 + CELLSIZE / 4, ShipType.CRUISER.getName());
+        cruiser.setColor(Color.GREEN);
+        cruiser.draw();
 
-        Text cruiserLeft = new Text(PADDING + WIDTH + CELLSIZE * 6, PADDING + CELLSIZE * 3 + CELLSIZE / 4, "" + gameStats.getCruiser());
+        cruiserLeft = new Text(PADDING + WIDTH + CELLSIZE * 6, PADDING + CELLSIZE * 3 + CELLSIZE / 4, "" + gameStats.getCruiser());
         cruiserLeft.setColor(Color.GREEN);
         cruiserLeft.grow(10, 10);
         cruiserLeft.draw();
     }
 
-    public void setSubmarineLeft() {
-        Text shipName = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 4 + CELLSIZE / 4, ShipType.SUBMARINE.getName());
-        shipName.setColor(Color.GREEN);
-        shipName.draw();
+    public void SubmarineLeft() {
+        Text submarine = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 4 + CELLSIZE / 4, ShipType.SUBMARINE.getName());
+        submarine.setColor(Color.GREEN);
+        submarine.draw();
 
-        Text submarineLeft = new Text(PADDING + WIDTH + CELLSIZE * 5, PADDING + CELLSIZE * 5 + CELLSIZE / 4, "" + gameStats.getSubmarine());
+        submarineLeft = new Text(PADDING + WIDTH + CELLSIZE * 5, PADDING + CELLSIZE * 5 + CELLSIZE / 4, "" + gameStats.getSubmarine());
         submarineLeft.setColor(Color.GREEN);
         submarineLeft.grow(10, 10);
         submarineLeft.draw();
     }
 
 
-    public void setCarrierLeft() {
-        Text shipName = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 6 + CELLSIZE / 4, ShipType.SMALL_SHIP.getName());
-        shipName.setColor(Color.GREEN);
-        shipName.draw();
+    public void CarrierLeft() {
+        Text carrier = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 6 + CELLSIZE / 4, ShipType.SMALL_SHIP.getName());
+        carrier.setColor(Color.GREEN);
+        carrier.draw();
 
-        Text carrierLeft = new Text(PADDING + WIDTH + CELLSIZE * 4, PADDING + CELLSIZE * 7 + CELLSIZE / 4, "" + gameStats.getCarrier());
+        carrierLeft = new Text(PADDING + WIDTH + CELLSIZE * 4, PADDING + CELLSIZE * 7 + CELLSIZE / 4, "" + gameStats.getCarrier());
         carrierLeft.setColor(Color.GREEN);
         carrierLeft.grow(10, 10);
         carrierLeft.draw();
@@ -267,6 +268,21 @@ public class Graphics {
         shipsLeft.setText("SHIPS LEFT: " + gameStats.shipsRemaining());
     }
 
+    public void setBattleshipLeft(){
+        battleshipLeft.setText("" + gameStats.getBattleship());
+    }
+
+    public void setCruiserLeft(){
+        cruiserLeft.setText("" + gameStats.getCruiser());
+    }
+
+    public void setSubmarineLeft(){
+        submarineLeft.setText("" + gameStats.getSubmarine());
+    }
+
+    public void setCarrierLeft(){
+        carrierLeft.setText("" + gameStats.getCarrier());
+    }
     public GameStats getGameStats() {
         return gameStats;
     }

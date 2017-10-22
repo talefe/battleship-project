@@ -42,6 +42,10 @@ public class Game {
 
         graphics.gameInfo();
         graphics.shipsLeft();
+        graphics.BattleshipLeft();
+        graphics.CarrierLeft();
+        graphics.CruiserLeft();
+        graphics.SubmarineLeft();
 
     }
 
@@ -63,13 +67,31 @@ public class Game {
 
                 graphics.setGameInfo(ship.getShipType().getName() + " HIT");
 
-                graphics.getGameStats().shipTypeLife(ship.getShipType());
+
 
                 if(ship.isDestroyed()){
 
                     graphics.getGameStats().killShip();
                     graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
                     graphics.setShipsLeftText();
+                    graphics.getGameStats().shipTypeLife(ship.getShipType());
+
+                    switch (ship.getShipType()){
+
+                        case BATTLESHIP:
+                            graphics.setBattleshipLeft();
+                            break;
+                        case CRUISER:
+                            graphics.setCruiserLeft();
+                            break;
+                        case SUBMARINE:
+                            graphics.setSubmarineLeft();
+                            break;
+                        case SMALL_SHIP:
+                            graphics.setCarrierLeft();
+                            break;
+                    }
+
                 }
 
                 if (graphics.getGameStats().isGameFinished()) {

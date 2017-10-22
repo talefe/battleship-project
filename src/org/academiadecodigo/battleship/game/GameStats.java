@@ -1,5 +1,6 @@
 package org.academiadecodigo.battleship.game;
 
+import org.academiadecodigo.battleship.grid.Graphics;
 import org.academiadecodigo.battleship.ship.ShipType;
 
 public class GameStats {
@@ -8,6 +9,7 @@ public class GameStats {
     private boolean gameFinished = false;
     private int totalShips = getTotalShips();
     private int liveShips = totalShips;
+
 
     private int battleship = ShipType.BATTLESHIP.getNumShips();
     private int cruiser = ShipType.CRUISER.getNumShips();

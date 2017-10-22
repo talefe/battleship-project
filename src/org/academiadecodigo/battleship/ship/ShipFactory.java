@@ -10,7 +10,7 @@ public class ShipFactory {
 
     public Ship[] createNavy() {
 
-        Ship[] navy = new Ship[]{
+        navy = new Ship[]{
                 new Ship(ShipType.BATTLESHIP),
                 new Ship(ShipType.CRUISER),
                 new Ship(ShipType.CRUISER),
@@ -18,19 +18,6 @@ public class ShipFactory {
                 new Ship(ShipType.SUBMARINE),
                 new Ship(ShipType.SMALL_SHIP),
                 new Ship(ShipType.SMALL_SHIP)
-
-
-                // trying to iterate over enum of ShipType to create ships according to numShips
-
-                /* for (ShipType type : ShipType.values()) {
-
-                    for (int i = 0; i < type.getNumShips(); i++) {
-
-                        new Ship(type);
-                    }
-                } */
-
-
         };
 
         for (Ship ship : navy) {

@@ -7,7 +7,6 @@ import org.academiadecodigo.battleship.grid.PositionGenerator;
 
 public class EasyMode extends PositionGenerator {
 
-    private int size;
     public Position[] occupiedPositions = new Position[20];
     private boolean worked = false;
     private Direction direction;
@@ -63,7 +62,6 @@ public class EasyMode extends PositionGenerator {
                     if (x == occupiedPositions[j].getCol() && y == occupiedPositions[j].getRow()) {
 
                         aroundYou = true;
-
                     }
                 }
             }

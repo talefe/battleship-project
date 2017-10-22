@@ -47,15 +47,15 @@ public class Ship {
         for (Position pos : positions) {
 
             if (pos.areCoordinatesEqual(x, y)) {
+
                 life--;
                 pos.click();
                 soundManager.play(SoundType.HIT);
 
                 if (life == 0) {
+
                     destroyed = true;
                     soundManager.play(SoundType.DESTROYED);
-
-
                 }
             }
         }

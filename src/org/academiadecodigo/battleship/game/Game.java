@@ -8,9 +8,6 @@ import org.academiadecodigo.battleship.ship.ShipFactory;
 import org.academiadecodigo.battleship.sound.SoundManager;
 import org.academiadecodigo.battleship.sound.SoundType;
 
-/**
- * Created by codecadet on 14/10/17.
- */
 public class Game {
 
     private Graphics graphics = new Graphics();
@@ -29,10 +26,6 @@ public class Game {
         graphics.startScreen();
 
         soundManager.loop(SoundType.START);
-
-
-
-
     }
 
     // ?????????? recebe um keyboard event para escolher HardMode(h) ou EasyMode(e) ??????????
@@ -46,13 +39,9 @@ public class Game {
         grid.gridInit();
 
         shipFactory.setGenerator(new EasyMode());
-
         ships = shipFactory.createNavy();
 
         graphics.gameInfo();
-
-
-
 
     }
 

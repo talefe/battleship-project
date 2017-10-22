@@ -2,7 +2,6 @@ package org.academiadecodigo.battleship.grid;
 
 public abstract class PositionGenerator {
 
-    private int size;
     public Position[] occupiedPositions = new Position[20];
     private boolean worked = false;
     private Direction direction;

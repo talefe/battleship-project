@@ -16,6 +16,7 @@ public class Graphics {
     private Rectangle background;
     private Rectangle grid;
     private Text info;
+    private Text shipsLeft;
 
     private int PADDING = Grid.PADDING;
     private int CELLSIZE = Grid.CELLSIZE;
@@ -24,8 +25,10 @@ public class Graphics {
     private int COLS = Grid.COLS;
     private int ROWS = Grid.ROWS;
 
+
     public Graphics() {
-        this.gameStats = gameStats;
+        this.gameStats = new GameStats();
+
     }
 
     public void startScreen() {
@@ -86,6 +89,8 @@ public class Graphics {
         numbers();
         aBc();
         gameLabels();
+        shipsLeft();
+        setBattleshipLeft();
     }
 
     public void linesX() {
@@ -186,6 +191,10 @@ public class Graphics {
 
 
     public void setBattleshipLeft() {
+
+        Text battleshipLeft = new Text(PADDING + WIDTH + CELLSIZE *7,PADDING + CELLSIZE, ""+ gameStats.getBattleship() );
+        battleshipLeft.setColor(Color.GREEN);
+        battleshipLeft.draw();
     }
 
     public void setCruiserLeft() {
@@ -197,9 +206,11 @@ public class Graphics {
     public void setCarrierLeft() {
     }
 
+
+
     public void shipsLeft() {
 
-        Text shipsLeft = new Text(Grid.PADDING, Grid.PADDING + Grid.HEIGHT+Grid.CELLSIZE,"SHIPS LEFT: ");
+        shipsLeft = new Text(Grid.PADDING, Grid.PADDING + Grid.HEIGHT+Grid.CELLSIZE,"SHIPS LEFT: " + gameStats.shipsRemaining());
         shipsLeft.setColor(Color.GREEN);
         shipsLeft.draw();
 
@@ -216,4 +227,9 @@ public class Graphics {
 
         info.setText(information);
     }
+
+    public void setShipsLeft(){
+        shipsLeft.setText("SHIPS LEFT: " + gameStats.shipsRemaining());
+    }
 }
+

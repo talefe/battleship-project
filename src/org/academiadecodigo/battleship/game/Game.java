@@ -16,7 +16,6 @@ public class Game {
     private Graphics graphics = new Graphics();
     private SoundManager soundManager = new SoundManager();
     private Grid grid = new Grid();
-
     private GameStats gameStats = new GameStats();
     private ShipFactory shipFactory = new ShipFactory();
 
@@ -28,7 +27,12 @@ public class Game {
         MouseController mc = new MouseController(this, gameStats);
 
         graphics.startScreen();
-        soundManager.play(SoundType.START);
+
+        soundManager.loop(SoundType.START);
+
+
+
+
     }
 
     // ?????????? recebe um keyboard event para escolher HardMode(h) ou EasyMode(e) ??????????
@@ -42,11 +46,12 @@ public class Game {
         grid.gridInit();
 
         shipFactory.setGenerator(new EasyMode());
+
         ships = shipFactory.createNavy();
 
-        graphics.shipsLeft();
-
         graphics.gameInfo();
+
+
 
 
     }
@@ -72,8 +77,8 @@ public class Game {
                 gameStats.shipTypeLife(ship.getShipType());
 
                 if(ship.isDestroyed()){
+
                     gameStats.setLiveships();
-                    graphics.shipsLeft();
                     graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
                 }
 
@@ -93,7 +98,7 @@ public class Game {
 
     public void endGame() {
         graphics.endScreen();
-        soundManager.play(SoundType.END);
+        soundManager.loop(SoundType.END);
     }
 
     public Grid getGrid() {

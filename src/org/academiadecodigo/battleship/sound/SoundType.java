@@ -6,7 +6,7 @@ public enum SoundType {
     // clean path for files in enum
 
 
-    START("theme.wav"),
+    START("theme2.wav"),
     HIT("hit.wav"),
     MISS("miss.wav"),
     DESTROYED("destroyed.wav"),

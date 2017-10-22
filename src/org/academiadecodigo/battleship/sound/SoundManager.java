@@ -30,4 +30,11 @@ public class SoundManager {
         }
     }
 
+    public void loop(SoundType type) {
+        Sound sound;
+        if ((sound = soundMap.get(type)) != null) {
+            sound.loopIndef();
+        }
+    }
+
 }

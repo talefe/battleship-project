@@ -10,13 +10,13 @@ public class GameStats {
     private boolean gameFinished = false;
     private int liveships = getLiveships();
 
-    private int battleship = ShipType.BATTLESHIP.getNumPositions();
-    private int cruiser = ShipType.CRUISER.getNumPositions();
-    private int submarine = ShipType.SUBMARINE.getNumPositions();
-    private int smallShip = ShipType.SMALL_SHIP.getNumPositions();
+    private int battleship = ShipType.BATTLESHIP.getNumShips();
+    private int cruiser = ShipType.CRUISER.getNumShips();
+    private int submarine = ShipType.SUBMARINE.getNumShips();
+    private int smallShip = ShipType.SMALL_SHIP.getNumShips();
 
     public GameStats(){
-        getLiveships();
+
     }
 
     public boolean isGameStart() {
@@ -70,5 +70,9 @@ public class GameStats {
     public int shipsRemaining(){
 
         return liveships;
+    }
+
+    public int getBattleship() {
+        return battleship;
     }
 }

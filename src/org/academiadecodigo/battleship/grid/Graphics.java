@@ -36,7 +36,7 @@ public class Graphics {
 
     public void startScreen() {
 
-        Picture startImage = new Picture(10, 10, "start-screen2.jpg");
+        Picture startImage = new Picture(10, 10, "start-screen.jpg");
         startImage.draw();
 
         Picture select = new Picture((350 + Grid.PADDING2), 500, "press.jpg");

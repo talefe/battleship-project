@@ -1,7 +1,6 @@
 package org.academiadecodigo.battleship.ship;
 
 public enum ShipType {
-
     BATTLESHIP("BATTLESHIP", 1, 5),
     CRUISER("CRUISER", 2, 4),
     SUBMARINE("SUBMARINE", 2, 3),

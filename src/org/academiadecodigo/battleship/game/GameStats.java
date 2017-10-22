@@ -6,12 +6,13 @@ public class GameStats {
 
     private boolean gameStarted = false;
     private boolean gameFinished = false;
-    private int liveShips = getLiveShips();
+    private int totalShips = getTotalShips();
+    private int liveShips = totalShips;
 
     private int battleship = ShipType.BATTLESHIP.getNumShips();
     private int cruiser = ShipType.CRUISER.getNumShips();
     private int submarine = ShipType.SUBMARINE.getNumShips();
-    private int smallShip = ShipType.SMALL_SHIP.getNumShips();
+    private int carrier = ShipType.SMALL_SHIP.getNumShips();
 
     private int shots = 0;
     private int misses = 0;
@@ -25,13 +26,13 @@ public class GameStats {
         gameStarted = true;
     }
 
-    public int getLiveShips() {
+    public int getTotalShips() {
 
         for (ShipType type : ShipType.values()) {
-            liveShips += type.getNumShips();
+            totalShips += type.getNumShips();
         }
 
-        return liveShips;
+        return totalShips;
     }
 
     public boolean isGameFinished() {
@@ -58,7 +59,7 @@ public class GameStats {
                 submarine--;
                 break;
             case SMALL_SHIP:
-                smallShip--;
+                carrier--;
                 break;
         }
     }
@@ -68,11 +69,22 @@ public class GameStats {
     }
 
     public int shipsRemaining(){
-
         return liveShips;
     }
 
     public int getBattleship() {
         return battleship;
+    }
+
+    public int getCruiser() {
+        return cruiser;
+    }
+
+    public int getSubmarine() {
+        return submarine;
+    }
+
+    public int getCarrier() {
+        return carrier;
     }
 }

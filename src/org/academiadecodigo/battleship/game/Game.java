@@ -14,7 +14,6 @@ public class Game {
     private Graphics graphics = new Graphics();
     private SoundManager soundManager = new SoundManager();
     private Grid grid = new Grid();
-    private GameStats gameStats = new GameStats();
     private ShipFactory shipFactory = new ShipFactory();
 
     private Ship[] ships;
@@ -22,7 +21,7 @@ public class Game {
 
     public void init() {
 
-        Controller mc = new Controller(this, gameStats);
+        Controller mc = new Controller(this, graphics.getGameStats());
 
         graphics.startScreen();
 
@@ -31,7 +30,7 @@ public class Game {
 
     public void start(PositionGenerator generator) {
 
-        gameStats.startGame();
+        graphics.getGameStats().startGame();
 
         soundManager.stop(SoundType.START);
 
@@ -62,15 +61,15 @@ public class Game {
 
                 graphics.setGameInfo(ship.getShipType().getName() + " HIT");
 
-                gameStats.shipTypeLife(ship.getShipType());
+                graphics.getGameStats().shipTypeLife(ship.getShipType());
 
                 if(ship.isDestroyed()){
 
-                    gameStats.killShip();
+                    graphics.getGameStats().killShip();
                     graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
                 }
 
-                if (gameStats.isGameFinished()) {
+                if (graphics.getGameStats().isGameFinished()) {
                     endGame();
                 }
                 return;

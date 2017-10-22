@@ -36,8 +36,24 @@ public class Graphics {
 
     public void startScreen() {
 
-        Picture startImage = new Picture(10, 10, "start-screen.jpg");
+        Picture startImage = new Picture(10, 10, "start-screen2.jpg");
         startImage.draw();
+
+        Picture select = new Picture((350 + Grid.PADDING2), 500, "press.jpg");
+
+        while (!gameStats.isGameStarted()){
+
+
+            try{
+                select.draw();
+                Thread.sleep(500);
+                select.delete();
+                Thread.sleep(500);
+            }catch (InterruptedException i){
+                System.out.println(i);
+            }
+
+        }
     }
 
     public void endScreen() {

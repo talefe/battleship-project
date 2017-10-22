@@ -22,10 +22,10 @@ public class Game {
     public void init() {
 
         Controller mc = new Controller(this, graphics.getGameStats());
-
+        soundManager.loop(SoundType.START);
         graphics.startScreen();
 
-        soundManager.loop(SoundType.START);
+
     }
 
     public void start(PositionGenerator generator) {

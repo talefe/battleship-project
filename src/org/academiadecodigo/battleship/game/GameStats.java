@@ -1,6 +1,6 @@
 package org.academiadecodigo.battleship.game;
 
-import org.academiadecodigo.battleship.grid.Graphics;
+
 import org.academiadecodigo.battleship.ship.ShipType;
 
 public class GameStats {

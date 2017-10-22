@@ -2,8 +2,6 @@ package org.academiadecodigo.battleship.grid;
 
 public class Position {
 
-    private Graphics graphics;
-    private boolean clicked = false;
     private int col;
     private int row;
 
@@ -27,15 +25,6 @@ public class Position {
 
     public boolean areCoordinatesEqual(int x, int y) {
         return this.col == x && this.row == y;
-    }
-
-    // FIX THIS
-    public void click() {
-        clicked = true;
-    }
-
-    public boolean isClicked() {
-        return clicked;
     }
 
 }

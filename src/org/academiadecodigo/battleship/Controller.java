@@ -59,7 +59,7 @@ public class Controller implements MouseHandler, KeyboardHandler {
             y = -1;
         }
 
-        if(alreadyHit(x,y))//Mudança
+        if (alreadyHit(x, y))//Mudança
             return;
 
         if (!gameStats.isGameFinished()) {
@@ -95,12 +95,12 @@ public class Controller implements MouseHandler, KeyboardHandler {
 
     }
 
-    public boolean alreadyHit(int x,int y){//Mudança
+    public boolean alreadyHit(int x, int y) {//Mudança
 
         Position pos = new Position(x, y);
-        for (int i = 0; i < game.getAlredyHit().length ; i++) {
+        for (int i = 0; i < game.getAlredyHit().length; i++) {
 
-            if(game.getAlredyHit()[i]!= null) {
+            if (game.getAlredyHit()[i] != null) {
                 if (pos.getCol() == game.getAlredyHit()[i].getCol() && pos.getRow() == game.getAlredyHit()[i].getRow())
                     return true;
             }

@@ -43,16 +43,15 @@ public class Graphics {
 
         while (!gameStats.isGameStarted()){
 
-
             try{
                 select.draw();
                 Thread.sleep(500);
                 select.delete();
                 Thread.sleep(500);
-            }catch (InterruptedException i){
+
+            } catch (InterruptedException i){
                 System.out.println(i);
             }
-
         }
     }
 

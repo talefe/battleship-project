@@ -1,6 +1,5 @@
 package org.academiadecodigo.battleship.game;
 
-
 import org.academiadecodigo.battleship.ship.ShipType;
 
 public class GameStats {
@@ -8,8 +7,6 @@ public class GameStats {
     private boolean gameStarted = false;
     private boolean gameFinished = false;
     private int totalShips = getTotalShips();
-    private int liveShips = totalShips;
-
 
     private int battleship = ShipType.BATTLESHIP.getNumShips();
     private int cruiser = ShipType.CRUISER.getNumShips();
@@ -39,7 +36,7 @@ public class GameStats {
 
     public boolean isGameFinished() {
 
-        if (liveShips == 0) {
+        if (shipsRemaining() == 0) {
 
             gameFinished = true;
             return gameFinished;
@@ -48,7 +45,7 @@ public class GameStats {
         return false;
     }
 
-    public void shipTypeLife(ShipType type) {
+    public void kill(ShipType type) {
 
         switch (type) {
             case BATTLESHIP:
@@ -66,12 +63,8 @@ public class GameStats {
         }
     }
 
-    public void killShip() {
-        liveShips--;
-    }
-
     public int shipsRemaining(){
-        return liveShips;
+        return battleship + cruiser + submarine + carrier;
     }
 
     public int getBattleship() {

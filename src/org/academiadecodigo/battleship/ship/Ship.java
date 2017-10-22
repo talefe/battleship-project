@@ -49,7 +49,6 @@ public class Ship {
             if (pos.areCoordinatesEqual(x, y)) {
 
                 life--;
-                pos.click();
                 soundManager.play(SoundType.HIT);
 
                 if (life == 0) {

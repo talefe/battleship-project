@@ -42,12 +42,12 @@ public abstract class PositionGenerator {
 
             for (int j = 0; j < occupiedPositions.length; j++) {
 
-                    if (occupiedPositions[j] != null) {
-                        if (positions[i].getCol() == occupiedPositions[j].getCol() && positions[i].getRow() == occupiedPositions[j].getRow()) {
+                if (occupiedPositions[j] != null) {
+                    if (positions[i].getCol() == occupiedPositions[j].getCol() && positions[i].getRow() == occupiedPositions[j].getRow()) {
 
-                            return generate(positions.length);
-                        }
+                        return generate(positions.length);
                     }
+                }
 
             }
 

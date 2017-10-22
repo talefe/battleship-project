@@ -71,6 +71,7 @@ public class Game {
         }
 
         graphics.drawMiss(x, y);
+        soundManager.play(SoundType.MISS);
     }
 
     public void endGame() {

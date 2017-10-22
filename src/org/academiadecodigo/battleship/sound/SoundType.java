@@ -7,9 +7,9 @@ public enum SoundType {
 
 
     START("theme.wav"),
-    HIT("hit2.wav"),
-    MISS("miss2.mp3"),                // doesn't work
-    DESTROYED("explosion.mp3"),       // doesn't work
+    HIT("hit.wav"),
+    MISS("miss.wav"),
+    DESTROYED("destroyed.wav"),
     END("end.wav");
 
     private String path;

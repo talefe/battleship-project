@@ -20,7 +20,7 @@ public abstract class PositionGenerator {
             int x = positions[0].getCol();
             int y = positions[0].getRow();
 
-            for (int i = 1; i < positions.length; i++) {
+            for (int i = 0; i < positions.length; i++) {
                 x += direction.getX();
                 y += direction.getY();
 

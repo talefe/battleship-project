@@ -32,7 +32,7 @@ public class Game {
 
     public void start() {
 
-        gameStats.setGameStart(true);
+        gameStats.startGame();
 
         soundManager.stop(SoundType.START);
 
@@ -67,7 +67,7 @@ public class Game {
 
                 if(ship.isDestroyed()){
 
-                    gameStats.setLiveships();
+                    gameStats.killShip();
                     graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
                 }
 

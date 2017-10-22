@@ -26,7 +26,7 @@ public class MouseController implements MouseHandler {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if (!gameStats.isGameStart()) {
+        if (!gameStats.isGameStarted()) {
             game.start();
             return;
         }

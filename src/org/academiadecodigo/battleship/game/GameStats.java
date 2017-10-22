@@ -2,34 +2,47 @@ package org.academiadecodigo.battleship.game;
 
 import org.academiadecodigo.battleship.ship.ShipType;
 
-// MAKE THIS BETTER, ADD MORE VARIABLES
-
 public class GameStats {
 
-    private boolean gameStart = false;
+    private boolean gameStarted = false;
     private boolean gameFinished = false;
-    private int liveships = getLiveships();
+    private int liveShips = getLiveShips();
 
     private int battleship = ShipType.BATTLESHIP.getNumShips();
     private int cruiser = ShipType.CRUISER.getNumShips();
     private int submarine = ShipType.SUBMARINE.getNumShips();
     private int smallShip = ShipType.SMALL_SHIP.getNumShips();
 
-    public GameStats(){
+    private int shots = 0;
+    private int misses = 0;
+    private int score = 0;
 
+    public boolean isGameStarted() {
+        return gameStarted;
     }
 
-    public boolean isGameStart() {
-        return gameStart;
+    public void startGame() {
+        gameStarted = true;
     }
 
-    public int getLiveships() {
+    public int getLiveShips() {
 
         for (ShipType type : ShipType.values()) {
-            liveships += type.getNumShips();
+            liveShips += type.getNumShips();
         }
 
-        return liveships;
+        return liveShips;
+    }
+
+    public boolean isGameFinished() {
+
+        if (liveShips == 0) {
+
+            gameFinished = true;
+            return gameFinished;
+        }
+
+        return false;
     }
 
     public void shipTypeLife(ShipType type) {
@@ -50,26 +63,13 @@ public class GameStats {
         }
     }
 
-    public boolean isGameFinished() {
-
-        if (liveships == 0) {
-            gameFinished = true;
-            return gameFinished;
-        }
-        return false;
-    }
-
-    public void setGameStart(boolean gameStart) {
-        this.gameStart = gameStart;
-    }
-
-    public void setLiveships() {
-        liveships--;
+    public void killShip() {
+        liveShips--;
     }
 
     public int shipsRemaining(){
 
-        return liveships;
+        return liveShips;
     }
 
     public int getBattleship() {

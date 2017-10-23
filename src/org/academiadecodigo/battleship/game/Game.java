@@ -76,11 +76,12 @@ public class Game {
 
                 if(ship.isDestroyed()){
 
+                    graphics.getGameStats().kill(ship.getShipType());
                     graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
 
-                    graphics.setShipsLeftText();
-                    graphics.getGameStats().kill(ship.getShipType());
                     graphics.setShipsStats();
+                    graphics.getGameStats().shipsRemaining();
+                    graphics.setShipsLeftText();
 
 
 

@@ -73,20 +73,16 @@ public class Controller implements MouseHandler, KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (keyboardEvent.getKey() == keyboardEvent.KEY_E) {
-            if (!gameStats.isGameStarted()) {
 
-                game.start(new EasyMode());
-            }
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_E &&
+                !gameStats.isGameStarted()) {
+            game.start(new EasyMode());
+            return;
+        }
 
-        } else if (keyboardEvent.getKey() == keyboardEvent.KEY_H) {
-            if (!gameStats.isGameStarted()) {
-
-                game.start(new HardMode());
-            }
-
-        } else {
-            System.out.println("not a valid key");
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_H &&
+                !gameStats.isGameStarted()) {
+            game.start(new HardMode());
         }
     }
 

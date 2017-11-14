@@ -3,31 +3,30 @@ package org.academiadecodigo.battleship.grid;
 public abstract class PositionGenerator {
 
     public Position[] occupiedPositions = new Position[20];
-    private boolean worked = false;
+    private boolean isShipPlaceable = false;
     private Direction direction;
 
     public Position[] generate(int size) {
 
-        worked = false;
+        isShipPlaceable = false;
         Position[] positions = new Position[size];
 
-        while (!worked) {
+        while (!isShipPlaceable) {
 
-            worked = true;
             positions[0] = new Position();
             direction = Direction.randomDirection();
 
-            int x = positions[0].getCol();
-            int y = positions[0].getRow();
+            int col = positions[0].getCol();
+            int row = positions[0].getRow();
 
             for (int i = 0; i < positions.length; i++) {
-                x += direction.getX();
-                y += direction.getY();
+                col += direction.getCol();
+                row += direction.getRow();
 
-                if (x < 0 || y < 0 || x > Grid.COLS - 1 || y > Grid.ROWS - 1)
-                    worked = false;
-
-                positions[i] = new Position(x, y);
+                if (!(col < 0 || row < 0 || col > Grid.COLS - 1 || row > Grid.ROWS - 1)) {
+                    isShipPlaceable = true;
+                }
+                positions[i] = new Position(col, row);
             }
         }
 
@@ -52,22 +51,20 @@ public abstract class PositionGenerator {
             }
 
             temporaryPositions[i] = positions[i];
-
         }
 
         int counter = 0;
-
         for (int i = 0; i < occupiedPositions.length; i++) {
 
-            if (occupiedPositions[i] == null) {
+            if (occupiedPositions != null) {
+                continue;
+            }
 
-                occupiedPositions[i] = temporaryPositions[counter];
+            occupiedPositions[i] = temporaryPositions[counter];
+            counter++;
 
-                counter++;
-
-                if (counter > temporaryPositions.length - 1) {
-                    break;
-                }
+            if (counter > temporaryPositions.length - 1) {
+                break;
             }
         }
         return positions;

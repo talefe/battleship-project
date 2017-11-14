@@ -11,33 +11,26 @@ public enum Direction {
     DOWNLEFT(-1, 1),
     DOWNRIGHT(1, 1);
 
-    private int x;
-    private int y;
+    private int col;
+    private int row;
 
-    Direction(int x, int y) {
-        this.x = x;
-        this.y = y;
+    Direction(int col, int row) {
+        this.col = col;
+        this.row = row;
     }
 
     public static Direction randomDirection() {
 
-        double random = Math.random();
-
-        if (random < 0.25)
-            return LEFT;
-        else if (random >= 0.25 && random < 0.5)
-            return RIGHT;
-        else if (random >= 0.5 && random < 0.75)
-            return UP;
-        else
-            return DOWN;
+        //double random = Math.random();
+        return values()
+                [(int) (Math.random() * 4)];
     }
 
-    public int getX() {
-        return x;
+    public int getCol() {
+        return col;
     }
 
-    public int getY() {
-        return y;
+    public int getRow() {
+        return row;
     }
 }

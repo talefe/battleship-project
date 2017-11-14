@@ -28,7 +28,7 @@ public class EasyMode extends PositionGenerator {
             int y = positions[0].getRow();
 
             for (int i = 0; i < positions.length; i++) {
-                x += direction.getX();
+                x += direction.getCol();
                 y += direction.getY();
 
                 if (x < 0 || y < 0 || x > Grid.COLS - 1 || y > Grid.ROWS - 1)
@@ -51,7 +51,7 @@ public class EasyMode extends PositionGenerator {
 
         for (int i = 0; i < Direction.values().length; i++) {
 
-            int x = pos.getCol() + Direction.values()[i].getX();
+            int x = pos.getCol() + Direction.values()[i].getCol();
             int y = pos.getRow() + Direction.values()[i].getY();
 
             for (int j = 0; j < occupiedPositions.length; j++) {

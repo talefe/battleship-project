@@ -29,12 +29,9 @@ public class Ship {
         return shipType;
     }
 
-    public boolean isHit(int x, int y) {
-
+    public boolean containsPosition(int x, int y) {
         for (Position pos : positions) {
-
             if (pos.areCoordinatesEqual(x, y)) {
-
                 return true;
             }
         }

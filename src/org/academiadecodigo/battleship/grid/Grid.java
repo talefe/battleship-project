@@ -1,7 +1,11 @@
 package org.academiadecodigo.battleship.grid;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Grid {
 
+    private final List<Position> positions;
     private Graphics graphics = new Graphics();
 
     public static int COLS = 10;
@@ -13,9 +17,14 @@ public class Grid {
     public static int WIDTH = COLS * CELLSIZE;
     public static int HEIGHT = ROWS * CELLSIZE;
 
-    public void gridInit() {
-        graphics.drawBackground();
-        graphics.drawGrid();
+    public Grid() {
+        positions = new LinkedList<>();
+        for (int i = 0; i < COLS; i++) {
+            for (int j = 0; j < ROWS; j++) {
+                Position position = new Position(i, j);
+                positions.add(position);
+            }
+        }
     }
 
     public int pixelToCol(int pixel) {

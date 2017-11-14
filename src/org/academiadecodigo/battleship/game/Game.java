@@ -21,13 +21,11 @@ public class Game {
 
     private Ship[] ships;
 
-
     public void init() {
 
         Controller mc = new Controller(this, graphics.getGameStats());
         soundManager.loop(SoundType.START);
         graphics.startScreen();
-
 
     }
 
@@ -37,19 +35,12 @@ public class Game {
 
         soundManager.stop(SoundType.START);
 
-        grid.gridInit();
-
-
+        grid = new Grid(cols, rows);
         shipFactory.setGenerator(generator);
         ships = shipFactory.createNavy();
 
         graphics.gameInfo();
         graphics.shipsLeft();
-        graphics.BattleshipLeft();
-        graphics.CarrierLeft();
-        graphics.CruiserLeft();
-        graphics.SubmarineLeft();
-
     }
 
     public void hitGuess(int x, int y) {
@@ -62,29 +53,15 @@ public class Game {
         graphics.getGameStats().setShots();
         for (Ship ship : ships) {
 
-            if (ship.isHit(x, y)) {
+            if (ship.containsPosition(x, y)) {
 
-                alreadyHit(x,y);//MUdança
+                alreadyHit(x, y);//MUdança
 
                 ship.hit(x, y);
-
-                graphics.drawHit(x, y);
-
                 graphics.setGameInfo(ship.getShipType().getName() + " HIT");
 
-
-
-                if(ship.isDestroyed()){
-
-                    graphics.getGameStats().kill(ship.getShipType());
-                    graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
-
-                    graphics.setShipsStats();
-                    graphics.getGameStats().shipsRemaining();
-                    graphics.setShipsLeftText();
-
-
-
+                if (ship.isDestroyed()) {
+                    updateHUD(ship);
                 }
 
                 if (graphics.getGameStats().isGameFinished()) {
@@ -102,9 +79,18 @@ public class Game {
         graphics.getGameStats().setMisses();
     }
 
+    private void updateHUD(Ship ship) {
+        graphics.getGameStats().kill(ship.getShipType());
+        graphics.setGameInfo(ship.getShipType().getName() + " DESTROYED!");
+
+        graphics.setShipsStats();
+        graphics.getGameStats().shipsRemaining();
+        graphics.setShipsLeftText();
+    }
+
     private void alreadyHit(int x, int y) {//Mudança
 
-        Position pos = new Position(x,y);
+        Position pos = new Position(x, y);
         alredyHit[index] = pos;
         index++;
     }

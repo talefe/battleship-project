@@ -61,74 +61,10 @@ public class Graphics {
         startImage.draw();
     }
 
-    public void drawHit(int x, int y) {
-
-        Line lineA = new Line(Grid.colToPixel(x), Grid.rowToPixel(y), Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y) + Grid.CELLSIZE);
-        lineA.setColor(Color.GREEN);
-        Line lineA2 = new Line(Grid.colToPixel(x) + 1, Grid.rowToPixel(y), Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y) + Grid.CELLSIZE - 1);
-        lineA2.setColor(Color.GREEN);
-        Line lineA3 = new Line(Grid.colToPixel(x), Grid.rowToPixel(y) + 1, Grid.colToPixel(x) + Grid.CELLSIZE - 1, Grid.rowToPixel(y) + Grid.CELLSIZE);
-        lineA3.setColor(Color.GREEN);
-
-        Line lineB = new Line(Grid.colToPixel(x), Grid.rowToPixel(y) + Grid.CELLSIZE, Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y));
-        lineB.setColor(Color.GREEN);
-        Line lineB2 = new Line(Grid.colToPixel(x), Grid.rowToPixel(y) + Grid.CELLSIZE - 1, Grid.colToPixel(x) + Grid.CELLSIZE - 1, Grid.rowToPixel(y));
-        lineB2.setColor(Color.GREEN);
-        Line lineB3 = new Line(Grid.colToPixel(x) + 1, Grid.rowToPixel(y) + Grid.CELLSIZE, Grid.colToPixel(x) + Grid.CELLSIZE, Grid.rowToPixel(y) + 1);
-        lineB3.setColor(Color.GREEN);
-
-        lineA.draw();
-        lineA2.draw();
-        lineA3.draw();
-        lineB.draw();
-        lineB2.draw();
-        lineB3.draw();
-    }
-
-
-    public void drawMiss(int x, int y) {
-
-        Rectangle cell = new Rectangle(Grid.colToPixel(x) + 1, Grid.rowToPixel(y) + 1, Grid.CELLSIZE - 1, Grid.CELLSIZE - 1);
-        cell.setColor(new Color(0, 102, 0));
-        cell.fill();
-    }
-
     public void drawBackground() {
         background = new Rectangle(Grid.PADDING2, Grid.PADDING2, Grid.WIDTH * 2 + Grid.PADDING, Grid.HEIGHT * 2);
         background.fill();
     }
-
-    public void drawGrid() {
-
-        grid = new Rectangle(Grid.PADDING, Grid.PADDING, Grid.WIDTH, Grid.HEIGHT);
-        grid.setColor(Color.GREEN);
-        grid.draw();
-        lines();
-        numbers();
-        aBc();
-        gameLabels();
-
-
-    }
-
-    public void lines() {
-        int nextLine = CELLSIZE;
-
-        for (int i = 0; i < COLS - 1; i++) {
-
-            Line gridLine;
-            gridLine = new Line(PADDING + nextLine, PADDING, PADDING + nextLine, PADDING + HEIGHT);
-            gridLine.setColor(Color.GREEN);
-            gridLine.draw();
-            Line gridLine2;
-            gridLine2 = new Line(PADDING, PADDING + nextLine, PADDING + WIDTH, PADDING + nextLine);
-            gridLine2.setColor(Color.GREEN);
-            gridLine2.draw();
-            nextLine += CELLSIZE;
-        }
-    }
-
-
 
     public void numbers() {
         Text text;
@@ -202,48 +138,12 @@ public class Graphics {
     }
 
 
-    public void BattleshipLeft() {
-
-        Text battleship = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE / 4, ShipType.BATTLESHIP.getName());
-        battleship.setColor(Color.GREEN);
-        battleship.draw();
-
-        battleshipLeft = new Text(PADDING + WIDTH + CELLSIZE * 7, PADDING + CELLSIZE + CELLSIZE / 4, "" + gameStats.getBattleship());
-        battleshipLeft.setColor(Color.GREEN);
-        battleshipLeft.grow(10, 10);
-        battleshipLeft.draw();
-    }
-
-    public void CruiserLeft() {
-
-        Text cruiser = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 2 + CELLSIZE / 4, ShipType.CRUISER.getName());
-        cruiser.setColor(Color.GREEN);
-        cruiser.draw();
-
-        cruiserLeft = new Text(PADDING + WIDTH + CELLSIZE * 6, PADDING + CELLSIZE * 3 + CELLSIZE / 4, "" + gameStats.getCruiser());
-        cruiserLeft.setColor(Color.GREEN);
-        cruiserLeft.grow(10, 10);
-        cruiserLeft.draw();
-    }
-
-    public void SubmarineLeft() {
-        Text submarine = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 4 + CELLSIZE / 4, ShipType.SUBMARINE.getName());
-        submarine.setColor(Color.GREEN);
-        submarine.draw();
-
-        submarineLeft = new Text(PADDING + WIDTH + CELLSIZE * 5, PADDING + CELLSIZE * 5 + CELLSIZE / 4, "" + gameStats.getSubmarine());
-        submarineLeft.setColor(Color.GREEN);
-        submarineLeft.grow(10, 10);
-        submarineLeft.draw();
-    }
-
-
-    public void CarrierLeft() {
-        Text carrier = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 6 + CELLSIZE / 4, ShipType.SMALL_SHIP.getName());
+    public void shipStatus(int x, int y, String shipName, int num) {
+        Text carrier = new Text(PADDING + WIDTH + CELLSIZE, PADDING + CELLSIZE * 6 + CELLSIZE / 4, shipName);
         carrier.setColor(Color.GREEN);
         carrier.draw();
 
-        carrierLeft = new Text(PADDING + WIDTH + CELLSIZE * 4, PADDING + CELLSIZE * 7 + CELLSIZE / 4, "" + gameStats.getCarrier());
+        carrierLeft = new Text(PADDING + WIDTH + CELLSIZE * 4, PADDING + CELLSIZE * 7 + CELLSIZE / 4, "" + num);
         carrierLeft.setColor(Color.GREEN);
         carrierLeft.grow(10, 10);
         carrierLeft.draw();
